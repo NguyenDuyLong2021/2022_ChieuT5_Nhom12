@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import available from "../../theme/_availables";
+import available from "../theme/_availables";
 import { StyleSheet, Image } from "react-native";
 import React from "react";
-import Home from "../Home";
-import MainStackNavigation from "../MainStackNavigation";
+import Home from "../components/Home";
+import MainStackNavigation from "./MainStackNavigation";
 const Tab = createBottomTabNavigator();
 const BottomNav = () => {
   return (

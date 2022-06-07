@@ -1,8 +1,8 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './Home';
-import CartScreen from './CartScreen';
+import Home from '../components/Home';
+import CartScreen from '../components/CartScreen';
 
 const Stack = createNativeStackNavigator();
 
