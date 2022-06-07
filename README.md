@@ -27,8 +27,8 @@ Make sure your computer installed nodejs and expo
 
 🔥 CONTRIBUSTOR
 ------------
-Dau Thi Hoa
-Nguyen Van Dan
+Dau Thi Hoa,
+Nguyen Van Dan,
 Nguyen Duy Long
 
 🔥 CONTACT
