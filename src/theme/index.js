@@ -31,6 +31,27 @@ const index = {
       flexWrap: "wrap",
       flexDirection: "row",
     },
+    background_color: {
+      backgroundColor: available.white,
+    },
+    button_solid: {
+      backgroundColor: available.blue,
+      padding: 10,
+      // width: available.width / 2,
+      borderRadius: available.b_radius,
+    },
+    al_text_center:{
+      textAlign: "center",
+    },
+    al_text_right:{
+      textAlign: "right",
+    },
+    color_text_1: {
+      color: available.white,
+    },
+    color_text_2: {
+      color: available.blue,
+    },
   }),
 };
 

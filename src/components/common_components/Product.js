@@ -12,7 +12,7 @@ const ItemCategory = (props) => {
           source={props.thumbnail}
         />
       </View>
-      <Text style={style.name_category}>{props.price}</Text>
+      <Text style={style.name_category}>{props.price} VNĐ</Text>
       <Text style={style.name_category}>{props.name_product}</Text>
       <TouchableOpacity style={style.button}>
         <Text style={index.style.heading_3}>Thêm vào giỏ</Text>
