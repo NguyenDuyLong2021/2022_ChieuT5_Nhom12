@@ -84,7 +84,7 @@ const Home = ({ navigation }) => {
   ];
   return (
     <ScrollView
-      style={layout_non_header.layout_non_header.margin_status_bar}
+      style={[layout_non_header.layout_non_header.margin_status_bar, index.style.background_color]}
     >
       <View style={style.header}>
         <Image style={style.logo} source={require("../assets/img/logo.png")} />
