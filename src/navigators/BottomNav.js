@@ -3,6 +3,7 @@ import available from "../theme/_availables";
 import { StyleSheet, Image } from "react-native";
 import React from "react";
 import Home from "../components/Home";
+import ForgotPasswordComponent from "../components/Forgot password/Forgotpassword.js";
 import MainStackNavigation from "./MainStackNavigation";
 const Tab = createBottomTabNavigator();
 const BottomNav = () => {
@@ -79,7 +80,7 @@ const BottomNav = () => {
           tabBarActiveTintColor: available.orange,
         }}
         name="Cá nhân"
-        component={Home}
+        component={ForgotPasswordComponent}
       />
     </Tab.Navigator>
   );
