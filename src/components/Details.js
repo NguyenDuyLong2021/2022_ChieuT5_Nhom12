@@ -11,9 +11,9 @@ import {
 } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import colors from '../assets/colors/colors';
+import colors from '../colors/colors';
 
-export default Details = ({ route, navigation }) => {
+const Details = ({ route, navigation }) => {
   const { item } = route.params;
 
   const renderIngredientsItem = ({ item }) => {
@@ -224,3 +224,4 @@ const styles = new StyleSheet.create({
     marginRight: 10,
   },
 });
+export default Details;

@@ -14,6 +14,7 @@ import ItemSlide from "./home_components/ItemSlide";
 import ItemCategory from "./home_components/ItemCategory";
 import index from "../theme/index";
 import Product from "./common_components/Product";
+
 const Home = ({ navigation }) => {
   const array = [
     { img: require("../assets/img/slide_demo_1.jpeg") },
@@ -105,6 +106,7 @@ const Home = ({ navigation }) => {
         </View>
       </View>
       <SearchComponent />
+      
       <ScrollView
         horizontal
         style={style.scroll_view}
@@ -114,6 +116,7 @@ const Home = ({ navigation }) => {
           <ItemSlide id={id} img={i.img} />
         ))}
       </ScrollView>
+
       <View style={index.style.space_between}>
         <TouchableOpacity>
           <Text style={index.style.heading_1}>Danh mục</Text>
@@ -122,6 +125,7 @@ const Home = ({ navigation }) => {
           <Text style={index.style.heading_2}>Xem tất cả</Text>
         </TouchableOpacity>
       </View>
+
       <ScrollView
         horizontal
         style={style.scroll_view}
