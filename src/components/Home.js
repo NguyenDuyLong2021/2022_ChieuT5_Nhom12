@@ -135,9 +135,12 @@ const Home = ({ navigation }) => {
           <ItemCategory id={id} name_ic={i.ic} ic_source={i.img} />
         ))}
       </ScrollView>
+      
       <View style={index.style.flex_wrap}>
         {array3.map((product, id) => (
-          <Product key={id}
+          // navigation ={naviagation}  
+          //khi vao trong chúng ta chỉ cần props.navigatin là lấy được navigation 
+          <Product navigation={navigation} key={id}
             name_product={product.name_product}
             price={product.price}
             thumbnail={product.img}
