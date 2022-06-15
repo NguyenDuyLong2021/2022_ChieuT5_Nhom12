@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {
   Text,
   View,
@@ -16,47 +16,47 @@ import available from "../theme/_availables";
 import SearchComponent from "./common_components/SearchComponent";
 import Product1 from "./common_components/Product1";
 
-const ProductDetails = () => {
+const ProductDetails = ({ navigation }) => {
   // export default function productDetails() {
     const array = [
       {
-        name_product: "Orange",
+        name_product: "Cam",
         price: "40000",
         priceOld: "45000",
         img: require("../assets/img_ProductDetails/orange.png")
       },
       {
-        name_product: "Lemon",
+        name_product: "Chanh",
         price: "35000",
         priceOld: "45000",
         img: require("../assets/img_ProductDetails/lemon.png")
       },
       {
-        name_product: "Strawberry",
+        name_product: "Dâu tây",
         price: "100000",
         priceOld: "200000",
         img: require("../assets/img_ProductDetails/strawberry.png")
       },
       {
-        name_product: "Guava",
+        name_product: "Ổi",
         price: "40000",
         priceOld: "67000",
         img: require("../assets/img_ProductDetails/guava.png")
       },
       {
-        name_product: "Tomato",
+        name_product: "Cà chua",
         price: "67000",
         priceOld: "80000",
         img: require("../assets/img_ProductDetails/tomato.png")
       },
       {
-        name_product: "BellPepper",
+        name_product: "Ớt chuông",
         price: "90000",
         priceOld: "115000",
         img: require("../assets/img_ProductDetails/bellPepper.png")
       },
       {
-        name_product: "Dig",
+        name_product: "Đào",
         price: "40000",
         priceOld: "45000",
         img: require("../assets/img_ProductDetails/dig.png")
@@ -89,10 +89,10 @@ const ProductDetails = () => {
      source={require("../assets/img_ProductDetails/img.png")}
      />
 
-    <Text style={styles.american}>American Red Peach</Text>
+    <Text style={styles.american}>Đào đỏ Mỹ</Text>
     <Text style={styles.red}>
-    Home / Product Details /{" "}
-     <Text style={{ fontWeight: "bold" }}>American Red Peach</Text>
+    Trang chủ / Sản phẩm nổi bật /{" "}
+     <Text style={{ fontWeight: "bold" }}>Đào đỏ Mỹ</Text>
     </Text>
 
     <ScrollView  horizontal={true}>
@@ -136,36 +136,27 @@ const ProductDetails = () => {
      </View>
 
 
-     <Text style={styles.name}>American Red Peach</Text>
+     <Text style={styles.name}>Đào đỏ Mỹ</Text>
      <Text style={styles.price}>
         40.000<Text style={{ textDecorationLine:"underline"}}>đ</Text> <Text style={styles.priceOld}>68.000<Text style={{ textDecorationLine:"underline"}}>đ</Text></Text>
      </Text>
      <Text style={styles.savings}>
-     Savings: <Text style={{ fontWeight: "bold" }}>28,000</Text> VND compared
-     to the market price
+     Tiết kiệm: <Text style={{ fontWeight: "bold" }}>28,000</Text> VNĐ so với giá thị trường
      </Text>
      <Text style={styles.peach}>
-     Peach (scientific name: Prunus persica) is a tree grown for its fruit or
-     flowers. It is a deciduous, small tree, growing to 5–10 m tall.
+     Đào (danh pháp khoa học: Prunus persica) là một loài cây được trồng để lấy 
+     quả hay hoa. Nó là một loài cây sớm rụng lá, thân gỗ nhỏ, có thể cao tới 5–10 m.
      </Text>
-     <Text style={styles.weight}>Weight</Text>
+     <Text style={styles.weight}>Trọng lượng</Text>
 
      <View
-      style={{
-        flex: 0.04,
-        flexDirection: "row",
-        marginLeft: 20,
-        marginRight: 5,
-        marginTop: 10,
+      style={{ flex: 0.04, flexDirection: "row", marginLeft: 20,
+        marginRight: 5,  marginTop: 10,
       }}
       >
       <View
-      style={{
-        flex: 1,
-        flexDirection: "row",
-        marginLeft: 0,
-        marginRight: 5,
-        marginTop: 10,
+      style={{ flex: 1, flexDirection: "row",
+        marginLeft: 0, marginRight: 5, marginTop: 10,
       }}
       >
       <Button 
@@ -173,12 +164,8 @@ const ProductDetails = () => {
       title="1Kg" onPress={() => Alert.alert("1Kg")} />
       </View>
       <View
-       style={{
-        flex: 1,
-        flexDirection: "row",
-        marginLeft: -420,
-        marginRight: 5,
-        marginTop: 10,
+       style={{ flex: 1,  flexDirection: "row", marginLeft: -420,
+        marginRight: 5, marginTop: 10,
       }}
       >
       <Button 
@@ -186,27 +173,24 @@ const ProductDetails = () => {
       title="2Kg" onPress={() => Alert.alert("2Kg")} />
       </View>
       <View
-      style={{
-      flex: 1,
-      flexDirection: "row",
-      marginLeft: -420,
-      marginRight: 5,
-      marginTop: 10,
+      style={{ flex: 1, flexDirection: "row", marginLeft: -420,
+      marginRight: 5, marginTop: 10,
     }}
     >
        <Button 
        fontWeight= "bold" 
        title="3Kg" onPress={() => Alert.alert("3Kg")} />
-       </View>
+
+
        </View>
 
-       <Text style={styles.weight}>Amount :</Text>
+       </View>
+       
+
+       <Text style={styles.weight}>Số lượng: :</Text>
        <View
-       style={{
-        flex: 0.03,
-        flexDirection: "row",
-        marginLeft: 20,
-        marginRight: 20,
+       style={{ flex: 0.03, flexDirection: "row",
+        marginLeft: 20,  marginRight: 20,
          }}
       >
 <View  style={{ height: 40,width:40, fontSize: 100, fontWeight:"bold"}}>
@@ -214,14 +198,22 @@ const ProductDetails = () => {
 title="-" onPress={() => Alert.alert("-")} />
 </View>
 
-        <TextInput
+        {/* <TextInput
           style={{ height: 35, width: 75, borderColor: "gray",
           borderWidth: 2, marginLeft: 0, marginRight: 20,
           fontWeight: "bold"
         }}
         value={1} 
         // keyboardType="numeric"
-       />
+       /> */}
+       <TextInput
+       style={{ height: 35, width: 75, borderColor: "gray",
+       borderWidth: 2, marginLeft: 0, marginRight: 20,
+       fontWeight: "bold", textAlign :"center",
+     }}
+       value='1'>
+       </TextInput>
+
  <View  style={{ height: 40,width:40, fontSize: 100,marginLeft: -20 , fontWeight:"bold", marginRight : 25}}>
 <Button 
 title="+" onPress={() => Alert.alert("+")} />
@@ -230,9 +222,9 @@ title="+" onPress={() => Alert.alert("+")} />
 <View style={{ borderRadius: 100, fontSize : 20, fontWeight: "bold", height: 50}}>
  <Button 
       color={"orange"}
-      title="Add to cart"
+      title="Thêm vào giỏ hàng"
       fontWeight= "bold" 
-      onPress={() => Alert.alert("Add to cart")}
+      onPress={() => Alert.alert("Thêm vào giỏ hàng")}
 />
 </View>
 <View  style={{ borderRadius: 100, fontSize : 20, fontWeight: "bold", height: 50, marginLeft: 10,
@@ -241,7 +233,7 @@ title="+" onPress={() => Alert.alert("+")} />
         backgroundColor="green"
         color={"green"}
         borderRadius="50"
-        title="Buy Now" 
+        title="Mua ngay" 
         fontSize= {17}
         fontWeight= "bold" 
         onPress={() => Alert.alert("Buy Now")}
@@ -254,12 +246,8 @@ title="+" onPress={() => Alert.alert("+")} />
 
      <View
      style={{
-     flex: 0.03,
-      flexDirection: "row",
-      marginTop: 20,
-      borderRadius: 50,
-      marginLeft: 20,
-      marginRight: 20,
+     flex: 0.03, flexDirection: "row", marginTop: 20, borderRadius: 50,
+      marginLeft: 20, marginRight: 20,
       }}
      >
       {/* <Button
@@ -281,8 +269,8 @@ title="+" onPress={() => Alert.alert("+")} />
      >
      <Button
           color={"#db7093"}
-            title="Product Information"
-             onPress={() => Alert.alert("Product Information")}
+            title="Thông tin sản phẩm"
+             onPress={() => Alert.alert("Thông tin sản phẩm")}
         />
       </View>
       <View
@@ -290,70 +278,73 @@ title="+" onPress={() => Alert.alert("+")} />
       marginRight: 5, marginTop: 10,
        }}
       >
-      <Button title="Return Policy" onPress={() => Alert.alert("Return Policy")
+      <Button title="Chính sách đổi trả" onPress={() => Alert.alert("Chính sách đổi trả")
       
     } />
       </View>
       <View
           style={{ flex: 1, flexDirection: "row",
-           marginLeft: -115,  marginRight: 5, marginTop: 10,
+           marginLeft: -70,  marginRight: 5, marginTop: 10,
            }}
              >
         <Button
-         title="Storage Instructions"
-          onPress={() => Alert.alert("Storage Instructions")}
+         title="Hướng dẫn bảo quản"
+          onPress={() => Alert.alert("Hướng dẫn bảo quản")}
         />
         </View>
       </View>
       <Text style={styles.product_info}>
-      <Text style={{fontWeight: "bold"}}>Peach</Text> (scientific name: Prunus persica) is a tree grown for its fruit or
-         flowers. It is a deciduous, small tree, growing to 5–10 m tall. Its
-         leaves are lanceolate, <Text style={{fontWeight: "bold"}}>7–15</Text> cm long and 
-         <Text style={{fontWeight: "bold"}}> 2–3</Text> cm wide. Flowers bloom in
-         early spring, before leafing; flowers single or paired, <Text style={{fontWeight: "bold"}}>2.5–3</Text> cm in
-         diameter, pink with 5 petals. Peach fruit, along with cherries, plums,
-         and apricots are nuts. Its fruit has a large seed enclosed in a hard
-         wood shell (called the "seed"), with a yellow or white flesh. , has a
-         delicious flavor and a velvety, fluffy skin.
+      <Text style={{fontWeight: "bold"}}>Đào </Text> (danh pháp khoa học: Prunus 
+      persica) là một loài cây được trồng để lấy quả hay hoa. Nó là một loài cây
+       sớm rụng lá, thân gỗ nhỏ, có thể cao tới  <Text style={{fontWeight: "bold"}}>5–10 m</Text>. 
+       Lá của nó có hình mũi mác
+      , dài  <Text style={{fontWeight: "bold"}}>7–15 cm</Text> và rộng <Text style={{fontWeight: "bold"}}> 2–3 cm</Text>. 
+      Hoa nở vào đầu mùa xuân, trước khi ra lá; 
+       hoa đơn hay có đôi, đường kính  <Text style={{fontWeight: "bold"}}>2,5–3 cm</Text>, màu hồng với 5 cánh hoa. Quả đào
+        cùng với quả của anh đào, mận, mơ là các loại quả hạch.Quả của nó có một
+         hạt giống to được bao bọc trong một lớp vỏ gỗ cứng (gọi là "hột"), 
+         cùi thịt màu vàng hay ánh trắng, có mùi vị thơm ngon và lớp vỏ có lông 
+         tơ mềm như nhung.
      </Text>
      {/* <Text style={styles.product_info}>
-     <Text style={{fontWeight: "bold"}}>ND Fresh</Text> is the most prestigious clean food store system in Vietnam, 
-     specializing in providing clean food to each kitchen of your family.
+    <Text style={{fontWeight: "bold"}}>ND Fresh </Text>là hệ thống cửa hàng thực phẩm sạch uy tín nhất ở Việt Nam,
+     chuyên cung cấp thực phẩm sạch tới từng bếp ăn của gia đình bạn.
 
-     <Text style={{fontWeight: "bold"}}>{"\n"}Vision:</Text> Grown, processed according to Bio (bio), Organic (organic), 
-     Eco (ecological); pledge not to sell fake, imitation and poor quality 
-     goods. Products delivered to customers are always on schedule, with the 
-     right quality, always preserved in an ideal environment, ensuring food 
-    hygiene and safety.
+     <Text style={{fontWeight: "bold"}}>Tầm nhìn:</Text> Được nuôi trồng, chế biến theo phương Bio (sinh học), Organic 
+     (hữu cơ), Eco (sinh thái); cam kết không bán hàng giả, hàng nhái và hàng
+     kém chất lượng. Sản phẩm được giao đến tay khách hàng luôn đúng cam kết,
+     đúng chất lượng niệm yết, luôn được bảo quản trong môi trường lý tưởng, 
+     đảm bảo vệ sinh an toàn thực phẩm.
 
-    <Text style={{fontWeight: "bold"}}>{"\n"}Objectives:</Text> Products are delivered to customers in accordance with their 
-    commitments, with the right quality, and are always preserved in an ideal 
-    environment, ensuring food hygiene and safety.
+     <Text style={{fontWeight: "bold"}}>Mục tiêu: </Text>Sản phẩm được giao đến tay khách hàng luôn đúng cam kết, đúng 
+     chất lượng niệm yết, luôn được bảo quản trong môi trường lý tưởng, đảm bảo 
+     vệ sinh an toàn thực phẩm.
      </Text>
      <Text style={styles.product_info}>
-         Peach (scientific name: Prunus persica) is a tree grown for its fruit or
-         flowers. It is a deciduous, small tree, growing to 5–10 m tall. Its
-         leaves are lanceolate, 7–15 cm long and 2–3 cm wide. Flowers bloom in
-         early spring, before leafing; flowers single or paired, 2.5–3 cm in
-         diameter, pink with 5 petals. Peach fruit, along with cherries, plums,
-         and apricots are nuts. Its fruit has a large seed enclosed in a hard
-         wood shell (called the "seed"), with a yellow or white flesh. , has a
-         delicious flavor and a velvety, fluffy skin.
+       Các giống đào trồng được chia thành hai loại là "hột rời" và "hột dính", 
+       phụ thuộc vào việc hột có dính với cùi thịt hay không; cả hai loại này đều
+        có cùi thịt trắng hay vàng. Quả đào với cùi thịt trắng thông thường có vị
+         rất ngọt và ít vị chua, trong khi loại có cùi thịt màu vàng thông thường
+          có vị chua kèm theo vị ngọt, mặc dù điều này cũng có sự dao động lớn. Cả
+           hai màu thông thường đều có các vệt đỏ trong lớp thịt của chúng. Loại 
+           đào cùi trắng, ít chua là phổ biến nhất 
      </Text> */}
 
 <View style={styles.related_product}>
-      <Text style={styles.related}>Related Products</Text>
+      <Text style={styles.related}>Sản phẩm liên quan</Text>
+
       <ScrollView  horizontal={true}>
+      
         {array.map((product, id) => (
           // navigation ={naviagation}  
           //khi vao trong chúng ta chỉ cần props.navigatin là lấy được navigation 
-          <Product1 key={id}
+          <Product1 navigation={navigation} key={id}
             name_product={product.name_product}
             price={product.price}
             priceOld ={product.priceOld}
             thumbnail={product.img}
           />
-        ))}
+        ))} 
       </ScrollView>
 </View>  
 {/* <View style={styles.related_product}>
@@ -371,140 +362,13 @@ title="+" onPress={() => Alert.alert("+")} />
         ))}
       </ScrollView>
 </View>   */}
-
-
-
  
-<ScrollView styles={{ flex: 1, flexDirection: "row", marginTop: 250}} horizontal={true}>
-      <ScrollView styles={styles.natural} horizontal={true}>
-      <View styles={{flex: 1, flexDirection: "row", borderWidth: 2, borderColor: "black"}}> 
-             <Image 
-              styles={{marginLeft : 50}}
-                source={require("../assets/img_ProductDetails/img_1.png")}
-               style={styles.imgIcon_natural}
-             />
-             <Text style={{textAlign: "center", fontSize: 10,}}>100% natural</Text>
-    
-               <Image
-
-                 source={require("../assets/img_ProductDetails/img_2.png")}
-                 style={styles.imgIcon_natural}
-               />
-              <Text style={{textAlign: "center" , fontSize: 10,}}>Safety certification</Text>
-      </View>
-          <Image
-                source={require("../assets/img_ProductDetails/img_3.png")}
-                style={styles.imgIcon_natural}
-           />
-              <Text style={{textAlign: "center" , fontSize: 10,}}>Always fresh</Text>
-         
-         <Image
-               source={require("../assets/img_ProductDetails/img_4.png")}
-               style={styles.imgIcon_natural}
-        />
-         <Text style={{textAlign: "center" , fontSize: 10,}}>Safe for health</Text>
+        
  
-         </ScrollView> 
-         </ScrollView> 
-
+<Text ref={null}></Text>
+<Text ref={null}></Text>
       </View>
-
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>màn hình chi tiết san phẩm</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>màn hình chi tiết san phẩm</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
-      <Text ref={null}>1</Text>
+ 
     </ScrollView>
   );
 }; 
@@ -549,8 +413,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: "while",
+    paddingTop: Constants.statusBarHeight, 
   },
   american: {
     fontSize: 20,
@@ -616,11 +479,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginLeft: 20,
-    color: "#c0c0c0",
+    color: "#a9a9a9",
     TextDecoder: "bold",
-    textDecorationLine:"line-through"
-
-    
+    textDecorationLine:"line-through",
+    textDecorationColor :"red",
   },
   savings: {
     fontSize: 20,
@@ -637,7 +499,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 5,
     fontSize: 25,
-    marginTop: 15,
+    marginTop: 20,
+    marginBottom: 0,
   },
   buttonWeight: {
     width: 50,
@@ -648,25 +511,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 20,
   },
-  natural: {
-    flex: 0.7,
-    width: 100,
-    height: 5,
-    backgroundColor: "green",
-    marginLeft: 50,
-    marginTop: 100,
-    textAlign: "center",
-    
-  },
-  imgIcon_natural: {
-    width: 45,
-    height: 40,
-    marginTop: 5,
-    marginLeft: 5,
-    borderRadius: 5,
-    borderColor: "green", 
-    textAlign: "center",
-  },
+  
   buy: {
     flex: 1,
     width: 25,
@@ -681,11 +526,12 @@ const styles = StyleSheet.create({
     borderColor: "#db7093"
   },
   related: {
-    fontSize: 30,
+    fontSize: 25,
     justifyContent: "center",
-    textAlign: "center",
-    fontFamily: 'Avenir Next Condensed', 
+    textAlign: "center", 
     fontWeight: "bold",
+    color: "#008080",
+    
   },
   related_product: { 
     // backgroundColor: "orange",
@@ -700,6 +546,7 @@ const styles = StyleSheet.create({
   scroll_view: {
     width: "100%",
   },
+  
 });
 
 export default ProductDetails;

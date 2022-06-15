@@ -17,10 +17,10 @@ const Product = (props) => {
           source={props.thumbnail}
         />
       </View>
-      <Text style={style.name_category}>{props.price} VNĐ</Text>
       <Text style={style.name_category}>{props.name_product}</Text>
+      <Text style={style.price}>{props.price} VNĐ</Text>
       <TouchableOpacity style={style.button}>
-        <Text style={index.style.heading_3}>Thêm vào giỏ</Text>
+        <Text style={index.style.heading_3}>Thêm vào giỏ hàng</Text>
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -39,11 +39,20 @@ const style = StyleSheet.create({
     height: 105,
     borderTopLeftRadius: available.b_radius,
     borderTopRightRadius: available.b_radius,
-  },
+  }, 
   name_category: {
     textAlign: "center",
     color: available.blue,
     fontWeight: available.fw_1,
+    fontSize: 20,
+    backgroundColor:"while"
+  },
+  price: {
+    textAlign: "center",
+    color: "#ff6347",
+    fontWeight: available.fw_1,
+    fontSize: 15,
+    fontWeight: "bold",
   },
   button: {
     width: null,

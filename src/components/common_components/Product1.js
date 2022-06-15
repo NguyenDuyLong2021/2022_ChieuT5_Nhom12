@@ -8,7 +8,7 @@ const Product1 = (props) => {
     <TouchableOpacity
       style={style.product}
       // Do chỗ này là component con nền cần truyền navigatio từ  màn hình cha vào thông qua props
-      // ở đây chúng ta truyền từ màn hình cha là home
+      // ở đây chúng ta truyền từ màn hình cha là home 
       onPress={() => props.navigation.navigate("ProductDetail")}
     >
       <View style={style.item_category}>
@@ -28,7 +28,7 @@ const Product1 = (props) => {
       </Text>
       </View>
       <TouchableOpacity style={style.button}>
-        <Text style={index.style.heading_3}>Thêm vào giỏ</Text>
+        <Text style={index.style.heading_3}>Thêm vào giỏ hàng</Text>
       </TouchableOpacity>
     </TouchableOpacity>
     </ScrollView>
@@ -54,25 +54,25 @@ const style = StyleSheet.create({
     textAlign: "center",
     color: available.blue,
     fontWeight: available.fw_1,
-    fontSize: 20,
-    backgroundColor:"while"
+    fontSize: 20, 
   },
   price: {
     textAlign: "center",
     color: "#ff6347",
     fontWeight: available.fw_1,
     fontSize: 15,
+    fontWeight: "bold", 
   },
   priceOld: {
     textAlign: "center", 
     fontWeight: available.fw_1,
     textDecorationLine:"line-through",
-    color: "#c0c0c0",
-    fontSize: 15,
+    color: "#a9a9a9",
+    fontSize: 15, 
   },
   button: {
     width: null,
-    height: 38,
+    height: 42,
     backgroundColor: available.blue,
     borderBottomLeftRadius: available.b_radius,
     borderBottomRightRadius: available.b_radius,
