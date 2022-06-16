@@ -7,7 +7,9 @@ export default function App() {
   return (
     <Context.Provider value={{ color: "red" }}>
       <NavigationContainer>
-        <BottomNav />
+        <BottomNav /> 
+         {/* <CartScreen /> */}
+        {/* <ProductDetails/> */}
       </NavigationContainer>
     </Context.Provider>
   );

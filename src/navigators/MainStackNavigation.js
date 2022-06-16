@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../components/Home";
 import CartScreen from "../components/CartScreen";
 import ConfirmOrderScreen from "../components/ConfirmOrderScreen";
+import ProductDetails from "../components/ProductDetails"; //import màn hình
 import available from "../theme/_availables";
 
 const Stack = createNativeStackNavigator();
@@ -34,6 +35,13 @@ export default function MainStackNavigation() {
         name="CofirmOrderScreen"
         component={ConfirmOrderScreen}
       />
-    </Stack.Navigator>
+      {/* hoa thêm nè */}
+{/* thêm một stack screen vào đây nhớ import màn hình vào nha */}
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="ProductDetail" // tên màn hình
+        component={ProductDetails} // truyền cái màn hình vào đây
+      />   
+       </Stack.Navigator>
   );
 }

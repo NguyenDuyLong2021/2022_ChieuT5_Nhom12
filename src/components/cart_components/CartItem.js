@@ -8,8 +8,10 @@ const CartItem = (props) => {
     <View style={style.cart_item}>
       <Image resizeMode="cover" style={style.img} source={props.img} />
       <View style={style.info}>
+
+       <Text style={index.style.heading_name}>{props.name_product}</Text>
         <Text style={index.style.heading_1}>{props.price} VNĐ</Text>
-        <Text style={index.style.heading_1}>{props.name_product}</Text>
+        
         <View style={style.quantity_area}>
           <TouchableOpacity
             style={style.border}
@@ -31,6 +33,7 @@ const CartItem = (props) => {
             ></Image>
           </TouchableOpacity>
         </View>
+
       </View>
       <View style={style.options}>
         <Image
@@ -55,22 +58,29 @@ const style = StyleSheet.create({
     borderColor: available.blue,
     borderRadius: available.b_radius,
     margin: 10,
-    height: null,
+    height: null, 
+    marginLeft: "3%",
+    marginRight: "2%",
   },
   img: {
-    flex: 3,
-    width: "50%",
+    flex: 1,
+    width: "35%",
     height: 110,
+    // height: 50,
+    marginLeft: "7%",
     borderTopLeftRadius: available.b_radius,
     borderBottomLeftRadius: available.b_radius,
   },
   info: {
     flex: 2,
     justifyContent: "center",
+    // marginLeft: "10%",
+    marginLeft: "10%",
   },
   options: {
     flex: 1,
     justifyContent: "space-evenly",
+    marginRight: "-10%"
   },
   border: {
     width: 20,
@@ -86,6 +96,7 @@ const style = StyleSheet.create({
     color: available.blue,
     fontWeight: "bold",
     fontSize: 16,
+    textAlign: "center",
   },
   icon: {
     width: null,
