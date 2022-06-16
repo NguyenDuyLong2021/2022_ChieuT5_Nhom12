@@ -86,8 +86,8 @@ const BottomNav = () => {
 };
 const style = StyleSheet.create({
   icon_tab: {
-    width: 35,
-    height: 35
+    width: 30,
+    height: 30
   },
 });
 export default BottomNav;

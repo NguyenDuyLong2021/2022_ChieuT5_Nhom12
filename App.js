@@ -1,12 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import BottomNav from "./src/navigators/BottomNav"; 
-import ProductDetails from "./src/components/ProductDetails";
-import CartScreen from "./src/components/CartScreen";
-
+import BottomNav from "./src/navigators/BottomNav";
 const Context = React.createContext();
-const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
