@@ -149,44 +149,32 @@ const ProductDetails = ({ navigation }) => {
      </Text>
      <Text style={styles.weight}>Trọng lượng</Text>
 
-     <View
-      style={{ flex: 0.04, flexDirection: "row", marginLeft: 20,
-        marginRight: 5,  marginTop: 10,
-      }}
-      >
+     <ScrollView  style={{flex: 1 , marginLeft: 20}}
+     horizontal={true}>
+
       <View
-      style={{ flex: 1, flexDirection: "row",
-        marginLeft: 0, marginRight: 5, marginTop: 10,
-      }}
-      >
-      <Button 
+      style={styles.buttonWeight} > 
+      <Button  
       fontWeight= "bold" 
       title="1Kg" onPress={() => Alert.alert("1Kg")} />
       </View>
+
       <View
-       style={{ flex: 1,  flexDirection: "row", marginLeft: -420,
-        marginRight: 5, marginTop: 10,
-      }}
-      >
+      style={styles.buttonWeight} > 
       <Button 
       fontWeight= "bold" 
       title="2Kg" onPress={() => Alert.alert("2Kg")} />
       </View>
+
       <View
-      style={{ flex: 1, flexDirection: "row", marginLeft: -420,
-      marginRight: 5, marginTop: 10,
-    }}
-    >
+      style={styles.buttonWeight} > 
        <Button 
        fontWeight= "bold" 
-       title="3Kg" onPress={() => Alert.alert("3Kg")} />
+       title="3Kg" onPress={() => Alert.alert("3Kg")} /> 
+      </View>
 
-
-       </View>
-
-       </View>
-       
-
+      </ScrollView>
+    
        <Text style={styles.weight}>Số lượng: :</Text>
        <View
        style={{ flex: 0.03, flexDirection: "row",
@@ -242,57 +230,37 @@ title="+" onPress={() => Alert.alert("+")} />
      
      
      </View>
- 
 
-     <View
-     style={{
-     flex: 0.03, flexDirection: "row", marginTop: 20, borderRadius: 50,
-      marginLeft: 20, marginRight: 20,
-      }}
-     >
-      {/* <Button
-      color={"orange"}
-      title="Add to cart"
-      width
-       onPress={() => Alert.alert("Add to cart")}
-/> */}
-     </View>
-     <View
-      style={{ flex: 0.04, flexDirection: "row", marginLeft: 20,
-      marginRight: 5, marginTop: -20,
-      }}
-      >
-     <View
-     style={{ flex: 1, flexDirection: "row", marginLeft: 0,
-     marginRight: 5, marginTop: 10,
-     }}
-     >
-     <Button
-          color={"#db7093"}
+     <ScrollView  style={{flex: 1 , marginLeft: 20}}
+      horizontal={true}>
+
+      <View
+      style={styles.buttonWeight} > 
+      <Button  
+      fontWeight= "bold" 
+            color={"green"}
             title="Thông tin sản phẩm"
-             onPress={() => Alert.alert("Thông tin sản phẩm")}
-        />
+            onPress={() => Alert.alert("Thông tin sản phẩm")} />
       </View>
+
       <View
-      style={{ flex: 1, flexDirection: "row", marginLeft: -60,
-      marginRight: 5, marginTop: 10,
-       }}
-      >
-      <Button title="Chính sách đổi trả" onPress={() => Alert.alert("Chính sách đổi trả")
+      style={styles.buttonWeight} > 
+      <Button 
+      fontWeight= "bold"  
+      style ={styles.buttonInfo} 
+      title="Chính sách đổi trả" onPress={() => Alert.alert("Chính sách đổi trả") } />
+      </View>
+
+      <View
+      style={styles.buttonWeight} > 
+       <Button 
+       fontWeight= "bold"  
+       title="Hướng dẫn bảo quản"
+       onPress={() => Alert.alert("Hướng dẫn bảo quản")} />
+      </View>
+
+      </ScrollView>
       
-    } />
-      </View>
-      <View
-          style={{ flex: 1, flexDirection: "row",
-           marginLeft: -70,  marginRight: 5, marginTop: 10,
-           }}
-             >
-        <Button
-         title="Hướng dẫn bảo quản"
-          onPress={() => Alert.alert("Hướng dẫn bảo quản")}
-        />
-        </View>
-      </View>
       <Text style={styles.product_info}>
       <Text style={{fontWeight: "bold"}}>Đào </Text> (danh pháp khoa học: Prunus 
       persica) là một loài cây được trồng để lấy quả hay hoa. Nó là một loài cây
@@ -537,16 +505,25 @@ const styles = StyleSheet.create({
     // backgroundColor: "orange",
     marginTop: 20,
     height: 270,
-    borderWidth: 1,
+    borderTopWidth: 0.5,
     borderRadius: 10,
-    borderColor: "red",
-    width: "96%",
-    marginLeft: "2%"
+    // borderColor: "red",
+    width: "95%",
+    marginLeft: "3%"
   },
   scroll_view: {
     width: "100%",
   },
-  
+  buttonInfo:{
+    color: "while",
+
+  },
+  buttonWeight :{
+    flex: 2, 
+    flexDirection: "row" , 
+    marginRight: 10,
+  },
+   
 });
 
 export default ProductDetails;

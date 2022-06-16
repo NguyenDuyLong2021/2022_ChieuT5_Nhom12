@@ -388,11 +388,11 @@ const style = StyleSheet.create({
   related_product: {  
     marginTop: 20,
     height: 270,
-    borderWidth: 1,
+    borderTopWidth: 0.5,
     borderRadius: 10,
-    borderColor: "red",
-    width: "96%",
-    marginLeft: "2%"
+    // borderColor: "red",
+    width: "98%",
+    marginLeft: "1%"
   },
   // natural: {
   //   flex: 0.7,

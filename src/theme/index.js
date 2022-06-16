@@ -6,8 +6,6 @@ const index = {
       color: "#ff6347",
       fontWeight: "bold",
       fontSize: 16,
-<<<<<<< HEAD
-=======
       marginLeft: 5, 
       marginBottom: 10,
     },
@@ -15,8 +13,7 @@ const index = {
       color: available.blue,
       fontWeight: "bold",
       fontSize: 20,
-      marginLeft: 5,  
->>>>>>> master
+      marginLeft: 5,   
     },
     heading_2: {
       color: available.orange,
