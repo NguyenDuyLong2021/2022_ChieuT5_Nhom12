@@ -4,14 +4,21 @@ import React, { useState } from "react";
 import index from "../../theme";
 const CartItem = (props) => {
   const [quantity, setQuantity] = useState(props.quantity);
+  //change number product cart item
+  const changeNumberProduct = (quantity) => {
+    setQuantity(quantity);
+  };
+  //Delete cart item 
+  const deleteProduct=(idProduct)=>{
+
+  }
   return (
     <View style={style.cart_item}>
       <Image resizeMode="cover" style={style.img} source={props.img} />
       <View style={style.info}>
-
-       <Text style={index.style.heading_name}>{props.name_product}</Text>
+        <Text style={index.style.heading_name}>{props.name_product}</Text>
         <Text style={index.style.heading_1}>{props.price} VNĐ</Text>
-        
+
         <View style={style.quantity_area}>
           <TouchableOpacity
             style={style.border}
@@ -25,7 +32,7 @@ const CartItem = (props) => {
           <Text style={[style.quantity_area]}>{quantity}</Text>
           <TouchableOpacity
             style={style.border}
-            onPress={() => setQuantity(quantity + 1)}
+            onPress={()=>changeNumberProduct(quantity + 1)}
           >
             <Image
               style={style.icon}
@@ -33,14 +40,13 @@ const CartItem = (props) => {
             ></Image>
           </TouchableOpacity>
         </View>
-
       </View>
       <View style={style.options}>
         <Image
           style={style.icon_view}
           source={require("../../assets/img/view.png")}
         ></Image>
-        <TouchableOpacity style={style.border}>
+        <TouchableOpacity style={style.border} onPress={()=>deleteProduct(1)}>
           <Image
             style={style.icon}
             source={require("../../assets/img/close.png")}
@@ -58,7 +64,7 @@ const style = StyleSheet.create({
     borderColor: available.blue,
     borderRadius: available.b_radius,
     margin: 10,
-    height: null, 
+    height: null,
     marginLeft: "3%",
     marginRight: "2%",
   },
@@ -80,7 +86,7 @@ const style = StyleSheet.create({
   options: {
     flex: 1,
     justifyContent: "space-evenly",
-    marginRight: "-10%"
+    marginRight: "-10%",
   },
   border: {
     width: 20,

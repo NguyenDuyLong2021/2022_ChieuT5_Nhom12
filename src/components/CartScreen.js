@@ -26,7 +26,7 @@ const CartScreen = ({ navigation }) => {
       name_product: "Cà chua",
       price: "67000",
       priceOld: "80000",
-      img: require("../assets/img_ProductDetails/tomato.png")
+      img: require("../assets/img_ProductDetails/tomato.png"),
     },
     {
       name_product: "Chanh vàng",
@@ -39,7 +39,7 @@ const CartScreen = ({ navigation }) => {
       price: "67500",
       img: require("../assets/img/VerantInterpretaris.png"),
       quantity: 1,
-    }, 
+    },
     {
       name_product: "Bơ",
       price: "90000",
@@ -48,7 +48,7 @@ const CartScreen = ({ navigation }) => {
     },
     {
       name_product: "Cam",
-      price: "40000", 
+      price: "40000",
       img: require("../assets/img_ProductDetails/orange.png"),
       quantity: 8,
     },
@@ -66,8 +66,9 @@ const CartScreen = ({ navigation }) => {
     outputRange: [min, max],
     extrapolate: "clamp",
   });
-  return (
-    <View style={style.cart_screen}>
+  //render cart item
+  const displayCartDetail = () => {
+    return (
       <ScrollView
         style={[index.style.background_color, style.view_scroll]}
         onScroll={Animated.event(
@@ -84,8 +85,22 @@ const CartScreen = ({ navigation }) => {
           />
         ))}
       </ScrollView>
+    );
+  };
+  //addvoucher and check that voucher
+  const addVoucher = () => {
+    //call api check vaildate api here
+  };
+  //save step order
+  const saveStepOrder = () => {
+    navigation.navigate("CofirmOrderScreen");
+    //code save step order here
+  };
+  return (
+    <View style={style.cart_screen}>
+      {displayCartDetail()}
       <Animated.View
-        style={[style.pop, { transform: [{ translateY: transformY  }] }]}
+        style={[style.pop, { transform: [{ translateY: transformY }] }]}
       >
         <TextInput
           autoFocus={false}
@@ -93,13 +108,14 @@ const CartScreen = ({ navigation }) => {
           style={style.text_input}
           placeholder="Nhập voucher tại đây"
           keyboardType="web-search"
+          onChange={() => addVoucher(event)}
         />
         <Text style={[index.style.color_text_2, index.style.al_text_right]}>
           Tổng tiền tạm tính: 40000 VNĐ
         </Text>
         <TouchableOpacity
           style={index.style.button_solid}
-          onPress={() => navigation.navigate("CofirmOrderScreen")}
+          onPress={() => saveStepOrder()}
         >
           <Text style={[index.style.color_text_1, index.style.al_text_center]}>
             XÁC NHẬN ĐƠN HÀNG

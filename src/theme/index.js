@@ -3,12 +3,9 @@ import available from "./_availables";
 const index = {
   style: StyleSheet.create({
     heading_1: {
-      color: "#ff6347",
+      color: available.blue,
       fontWeight: "bold",
       fontSize: 16,
-<<<<<<< HEAD
-=======
-      marginLeft: 5, 
       marginBottom: 10,
     },
     heading_name: {
@@ -16,7 +13,6 @@ const index = {
       fontWeight: "bold",
       fontSize: 20,
       marginLeft: 5,  
->>>>>>> master
     },
     heading_2: {
       color: available.orange,
@@ -74,6 +70,9 @@ const index = {
     },
     al_text_right: {
       textAlign: "right",
+    },
+    al_text_left: {
+      textAlign: "left",
     },
     color_text_1: {
       color: available.white,
