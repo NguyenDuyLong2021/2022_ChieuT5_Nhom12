@@ -388,7 +388,7 @@ const style = StyleSheet.create({
   related_product: {
     marginTop: 20,
     height: 270,
-    borderWidth: 1,
+    borderTopWidth: 0.5,
     borderRadius: 10,
     borderColor: "red",
     width: "96%",

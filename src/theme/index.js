@@ -6,13 +6,14 @@ const index = {
       color: available.blue,
       fontWeight: "bold",
       fontSize: 16,
+      marginLeft: 5, 
       marginBottom: 10,
     },
     heading_name: {
       color: available.blue,
       fontWeight: "bold",
       fontSize: 20,
-      marginLeft: 5,  
+      marginLeft: 5,   
     },
     heading_2: {
       color: available.orange,
