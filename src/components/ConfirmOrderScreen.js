@@ -3,9 +3,21 @@ import React, { useState, useRef } from "react";
 import layout from "../theme/layout";
 import available from "../theme/_availables";
 import index from "../theme";
-import { Modal } from "react-native-web";
+import { Modal, TextInput } from "react-native-web";
+import InputComponent from "../components/common_components/InputComponent";
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel,
+} from "react-native-simple-radio-button";
+import PopUp from "./common_components/PopUp";
+var radio_props = [
+  { label: "Thanh toán tiền mặt", value: 0 },
+  { label: "Thanh toán online", value: 1 },
+];
 const ConfirmOrderScreen = () => {
   //state of modal edit address
+  const [statePayment, setStatePayment] = useState(0);
   const [showEditAddress, setShowEditAddress] = useState(false);
   return (
     <View style={style.confirm_order_screen}>
@@ -33,28 +45,51 @@ const ConfirmOrderScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <Modal animationType="slide" transparent={true} visible={true}>
-        <View style={style.modal}>
-          <Text>Đặt hàng thành công</Text>
-
-          <Text>Đặt hàng thành công</Text>
-          <Text>Đặt hàng thành công</Text>
-          
-          <Text>Đặt hàng thành công</Text>
-          <Text>Đặt hàng thành công</Text>
-          
-          <Text>Đặt hàng thành công</Text>
-          <Text>Đặt hàng thành công</Text>
-          <Text>Đặt hàng thành công</Text>
-          <Text>Đặt hàng thành công</Text>
-        </View>
-      </Modal>
+      <View style={layout.style.flex_row}>
+        <Text style={[index.style.heading_1, { flex: 1 }]}>Ngày giao</Text>
+        <Text
+          style={[index.style.heading_1, index.style.al_text_left, { flex: 1 }]}
+        >
+          Thời gian giao
+        </Text>
+      </View>
+      <View style={style.row}>
+        <InputComponent />
+        <InputComponent />
+      </View>
+      <View style={{ marginTop: 10 }}>
+        <Text style={index.style.heading_1}>Hình thức thanh toán</Text>
+        <RadioForm
+          radio_props={radio_props}
+          initial={0}
+          buttonColor={available.blue}
+          selectedButtonColor={available.orange}
+          onPress={(value) => {
+            setStatePayment(value);
+          }}
+          labelStyle={index.style.heading_1}
+        />
+      </View>
+      <View style={{ marginTop: 10 }}>
+        <Text style={index.style.heading_1}>Tổng tiền: 60000 VNĐ</Text>
+        <Text style={index.style.heading_1}>Mã giám giá: FF434</Text>
+        <Text style={index.style.heading_1}>Tiền ship: 20000 VNĐ</Text>
+        <Text style={index.style.heading_1}>
+          Số tiền cần thanh toán: 80000 VNĐ
+        </Text>
+      </View>
+      <TouchableOpacity style={index.style.button_solid}>
+        <Text style={[index.style.color_text_1, index.style.al_text_center]}>
+          XÁC NHẬN ĐẶT HÀNG
+        </Text>
+      </TouchableOpacity>
+      <PopUp />
     </View>
   );
 };
 const style = StyleSheet.create({
   confirm_order_screen: {
-    margin: 10,
+    paddingHorizontal:10
   },
   row: {
     flexDirection: "row",
@@ -62,10 +97,10 @@ const style = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
   },
-  modal:{
+  modal: {
     width: available.width,
-    height: 200
-  }
+    height: 200,
+  },
 });
 
 export default ConfirmOrderScreen;

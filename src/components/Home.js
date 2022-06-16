@@ -51,14 +51,14 @@ const Home = ({ navigation }) => {
     {
       name_product: "Dưa hấu",
       price: "45000",
-      img: require("../assets/img/DebitisCopiosae.png"), 
+      img: require("../assets/img/DebitisCopiosae.png"),
     },
     {
       name_product: "Cam",
-      price: "40000", 
-      img: require("../assets/img_ProductDetails/orange.png")
+      price: "40000",
+      img: require("../assets/img_ProductDetails/orange.png"),
     },
-    
+
     {
       name_product: "Thịt",
       price: "40000",
@@ -74,7 +74,7 @@ const Home = ({ navigation }) => {
       price: "89000",
       img: require("../assets/img/QuiQuodPlatonem.png"),
     },
-    
+
     {
       name_product: "Đào",
       price: "40000",
@@ -100,7 +100,6 @@ const Home = ({ navigation }) => {
       price: "90000",
       img: require("../assets/img/ZalorumAliquam.png"),
     },
-    
   ];
   const array4 = [
     { img: require("../assets/img/SummerFruit.png") },
@@ -111,38 +110,38 @@ const Home = ({ navigation }) => {
       name_product: "Đào",
       price: "40000",
       priceOld: "45000",
-      img: require("../assets/img_ProductDetails/dig.png")
+      img: require("../assets/img_ProductDetails/dig.png"),
     },
-  
+
     {
       name_product: "Chanh",
       price: "35000",
       priceOld: "45000",
-      img: require("../assets/img_ProductDetails/lemon.png")
+      img: require("../assets/img_ProductDetails/lemon.png"),
     },
     {
       name_product: "Dâu tây",
       price: "100000",
       priceOld: "200000",
-      img: require("../assets/img_ProductDetails/strawberry.png")
+      img: require("../assets/img_ProductDetails/strawberry.png"),
     },
     {
       name_product: "Ổi",
       price: "40000",
       priceOld: "67000",
-      img: require("../assets/img_ProductDetails/guava.png")
+      img: require("../assets/img_ProductDetails/guava.png"),
     },
     {
       name_product: "Cà chua",
       price: "67000",
       priceOld: "80000",
-      img: require("../assets/img_ProductDetails/tomato.png")
+      img: require("../assets/img_ProductDetails/tomato.png"),
     },
     {
       name_product: "Ớt chuông",
       price: "90000",
       priceOld: "115000",
-      img: require("../assets/img_ProductDetails/bellPepper.png")
+      img: require("../assets/img_ProductDetails/bellPepper.png"),
     },
     {
       name_product: "Táo",
@@ -150,6 +149,8 @@ const Home = ({ navigation }) => {
       img: require("../assets/img/GraeconNominati.png"),
     },
   ];
+  //click cart
+  const clickCart = () => navigation.navigate("CartScreen");
   return (
     <ScrollView
       style={[layout.style.margin_status_bar, index.style.background_color]}
@@ -163,7 +164,7 @@ const Home = ({ navigation }) => {
               source={require("../assets/img/bell.png")}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={style.cart} onPress={() => navigation.navigate('CartScreen')}>
+          <TouchableOpacity style={style.cart} onPress={clickCart}>
             <Image
               style={style.icon_header}
               source={require("../assets/img/cart.png")}
@@ -173,13 +174,13 @@ const Home = ({ navigation }) => {
         </View>
       </View>
       <SearchComponent />
-      
+
       <ScrollView
         horizontal
         style={style.scroll_view}
         showsHorizontalScrollIndicator={false}
       >
-        {array.map((i,id) => (
+        {array.map((i, id) => (
           <ItemSlide id={id} img={i.img} />
         ))}
       </ScrollView>
@@ -202,9 +203,8 @@ const Home = ({ navigation }) => {
           <ItemCategory id={id} name_ic={i.ic} ic_source={i.img} />
         ))}
       </ScrollView>
-      
 
-       {/* <ScrollView styles={style.natural} horizontal={true}>
+      {/* <ScrollView styles={style.natural} horizontal={true}>
       <ScrollView styles={style.naturalItem} horizontal={false}>
             <Image 
               styles={{marginLeft : "50%", marginTop : "50%", fetch: 1 }}
@@ -237,20 +237,21 @@ const Home = ({ navigation }) => {
     </ScrollView>
          </ScrollView>   */}
 
-
       <Text style={style.relatedNew}>Sản phẩm mới</Text>
-      <ScrollView  horizontal={true}>
-      <View style={index.style.flex_wrap}>
-        {array3.map((product, id) => (
-          // navigation ={naviagation}  
-          //khi vao trong chúng ta chỉ cần props.navigatin là lấy được navigation 
-          <Product navigation={navigation} key={id}
-            name_product={product.name_product}
-            price={product.price}
-            thumbnail={product.img}
-          />
-        ))}
-      </View>
+      <ScrollView horizontal={true}>
+        <View style={index.style.flex_wrap}>
+          {array3.map((product, id) => (
+            // navigation ={naviagation}
+            //khi vao trong chúng ta chỉ cần props.navigatin là lấy được navigation
+            <Product
+              navigation={navigation}
+              key={id}
+              name_product={product.name_product}
+              price={product.price}
+              thumbnail={product.img}
+            />
+          ))}
+        </View>
       </ScrollView>
 
       <ScrollView
@@ -258,50 +259,50 @@ const Home = ({ navigation }) => {
         style={style.scroll_view_fruit}
         showsHorizontalScrollIndicator={false}
       >
-        {array4.map((i,id) => (
-          <ItemSlide id={id} img={i.img} 
-          
-          />
-        ))} 
-
+        {array4.map((i, id) => (
+          <ItemSlide id={id} img={i.img} />
+        ))}
       </ScrollView>
 
-      <ScrollView  horizontal={false}>
-<View>
-      <Text style={style.name_category}>Trái cây mùa hè</Text>
-      <Text style={style.price}>100% nước ép trái cây tự nhiên nguyên chất</Text>
-      <TouchableOpacity style={style.button}>
-        <Text style={index.style.heading3}>Mua sắm ngay bây giờ</Text>
-      </TouchableOpacity>
-</View>
-{/* <View>
+      <ScrollView horizontal={false}>
+        <View>
+          <Text style={style.name_category}>Trái cây mùa hè</Text>
+          <Text style={style.price}>
+            100% nước ép trái cây tự nhiên nguyên chất
+          </Text>
+          <TouchableOpacity style={style.button}>
+            <Text style={index.style.heading3}>Mua sắm ngay bây giờ</Text>
+          </TouchableOpacity>
+        </View>
+        {/* <View>
       <Text style={style.name_category}>Trái cây uống khô</Text>
       <Text style={style.price}>Giảm giá 25% cho tất cả các câu chuyện</Text>
       <TouchableOpacity style={style.button}>
         <Text style={index.style.heading3}>Mua sắm ngay bây giờ</Text>
       </TouchableOpacity>
 </View> */}
-</ScrollView>
-
-<View style={style.related_product}>
-      <Text style={style.related}>Sản phẩm phổ biến</Text>
-      <ScrollView  horizontal={true}>
-        {array5.map((product, id) => (
-          // navigation ={naviagation}  
-          //khi vao trong chúng ta chỉ cần props.navigatin là lấy được navigation 
-          <Product1 navigation={navigation} key={id}
-            name_product={product.name_product}
-            price={product.price}
-            priceOld ={product.priceOld}
-            thumbnail={product.img}
-          />
-        ))}
       </ScrollView>
-</View>  
 
- 
-<Text ref={null}></Text>
-<Text ref={null}></Text>
+      <View style={style.related_product}>
+        <Text style={style.related}>Sản phẩm phổ biến</Text>
+        <ScrollView horizontal={true}>
+          {array5.map((product, id) => (
+            // navigation ={naviagation}
+            //khi vao trong chúng ta chỉ cần props.navigatin là lấy được navigation
+            <Product1
+              navigation={navigation}
+              key={id}
+              name_product={product.name_product}
+              price={product.price}
+              priceOld={product.priceOld}
+              thumbnail={product.img}
+            />
+          ))}
+        </ScrollView>
+      </View>
+
+      <Text ref={null}></Text>
+      <Text ref={null}></Text>
     </ScrollView>
   );
 };
@@ -354,7 +355,7 @@ const style = StyleSheet.create({
     color: "black",
     fontWeight: available.fw_1,
     fontSize: 25,
-    backgroundColor:"while"
+    backgroundColor: "while",
   },
   price: {
     textAlign: "center",
@@ -365,14 +366,13 @@ const style = StyleSheet.create({
   },
   button: {
     width: null,
-    height: 38, 
+    height: 38,
     justifyContent: "center",
-    
   },
   relatedNew: {
     fontSize: 28,
     justifyContent: "center",
-    textAlign: "center", 
+    textAlign: "center",
     fontWeight: "bold",
     color: "#008080",
     marginTop: 15,
@@ -380,31 +380,31 @@ const style = StyleSheet.create({
   related: {
     fontSize: 28,
     justifyContent: "center",
-    textAlign: "center", 
+    textAlign: "center",
 
     fontWeight: "bold",
     color: "#008080",
   },
-  related_product: {  
+  related_product: {
     marginTop: 20,
     height: 270,
     borderTopWidth: 0.5,
     borderRadius: 10,
-    // borderColor: "red",
-    width: "98%",
-    marginLeft: "1%"
+    borderColor: "red",
+    width: "96%",
+    marginLeft: "2%",
   },
   // natural: {
   //   flex: 0.7,
   //   width: 100,
-  //   height: 5, 
-    
+  //   height: 5,
+
   // },
   // naturalItem: {
   //   flex: 1,
   //   width: 100,
   //   height: 5,
-  //   backgroundColor: "green", 
+  //   backgroundColor: "green",
   //   textAlign: "center",
   //   marginLeft:"10%",
   // },
@@ -414,7 +414,7 @@ const style = StyleSheet.create({
   //   marginTop: 5,
   //   marginLeft: 5,
   //   borderRadius: 5,
-  //   borderColor: "green", 
+  //   borderColor: "green",
   //   textAlign: "center",
   // },
 });

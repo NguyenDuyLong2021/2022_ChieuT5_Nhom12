@@ -2,14 +2,14 @@ import { Text, TextInput, View, StyleSheet, Image } from "react-native";
 import React, { Component } from "react";
 import available from "../../theme/_availables";
 import { Dimensions } from "react-native";
-const InputComponent = () => {
+const InputComponent = (props) => {
   return (
     <View style={style.input}>
       <TextInput
         autoFocus={false}
         placeholderTextColor={available.blue}
         style={style.text}
-        placeholder="Tìm kiếm ngay"
+        placeholder={props.placeholder}
         keyboardType="web-search"
       />
       <View></View>
@@ -23,10 +23,9 @@ const style = StyleSheet.create({
     borderStyle: "solid",
     borderColor: available.blue,
     borderRadius: available.b_radius,
-    margin: 10,
+    flex:1
   },
   text: {
-    width: Dimensions.get("window").width,
     fontSize: 16,
     fontWeight: "bold",
     color: available.blue,
@@ -37,3 +36,4 @@ const style = StyleSheet.create({
     margin: 5,
   },
 });
+export default InputComponent
