@@ -18,7 +18,7 @@ const BottomNav = () => {
           tabBarIcon: () => (
             <Image
               style={style.icon_tab}
-              source={require("../../assets/img/home.png")}
+              source={require("../assets/img/home.png")}
             />
           ),
           tabBarBadgeStyle: {
@@ -37,7 +37,7 @@ const BottomNav = () => {
           tabBarIcon: () => (
             <Image
               style={style.icon_tab}
-              source={require("../../assets/img/coupon.png")}
+              source={require("../assets/img/coupon.png")}
             />
           ),
           tabBarBadgeStyle: {
@@ -55,7 +55,7 @@ const BottomNav = () => {
           tabBarIcon: () => (
             <Image
               style={style.icon_tab}
-              source={require("../../assets/img/heart.png")}
+              source={require("../assets/img/heart.png")}
             />
           ),
           tabBarBadgeStyle: {
@@ -73,7 +73,7 @@ const BottomNav = () => {
           tabBarIcon: () => (
             <Image
               style={style.icon_tab}
-              source={require("../../assets/img/user.png")}
+              source={require("../assets/img/user.png")}
             />
           ),
           tabBarActiveTintColor: available.orange,
