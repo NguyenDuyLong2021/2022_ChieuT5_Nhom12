@@ -6,7 +6,6 @@ const index = {
       color: available.blue,
       fontWeight: "bold",
       fontSize: 16,
-      marginLeft: 5,
     },
     heading_2: {
       color: available.orange,
@@ -40,10 +39,10 @@ const index = {
       // width: available.width / 2,
       borderRadius: available.b_radius,
     },
-    al_text_center:{
+    al_text_center: {
       textAlign: "center",
     },
-    al_text_right:{
+    al_text_right: {
       textAlign: "right",
     },
     color_text_1: {
@@ -51,6 +50,12 @@ const index = {
     },
     color_text_2: {
       color: available.blue,
+    },
+    icon: {
+      width: 20,
+      height: 20,
+      marginLeft: 5,
+      marginRight: 5,
     },
   }),
 };

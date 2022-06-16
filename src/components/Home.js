@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
-import layout_non_header from "../theme/layout";
+import layout from "../theme/layout";
 import available from "../theme/_availables";
 import SearchComponent from "./common_components/SearchComponent";
 import ItemSlide from "./home_components/ItemSlide";
@@ -84,7 +84,7 @@ const Home = ({ navigation }) => {
   ];
   return (
     <ScrollView
-      style={[layout_non_header.layout_non_header.margin_status_bar, index.style.background_color]}
+      style={[layout.style.margin_status_bar, index.style.background_color]}
     >
       <View style={style.header}>
         <Image style={style.logo} source={require("../assets/img/logo.png")} />
