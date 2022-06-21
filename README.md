@@ -9,10 +9,11 @@ Project report on introduction to software engineering
 This module requires the following modules:
 
 Make sure your computer installed nodejs and expo
+Install Tomcat and maven
 
 🔥 INSTALLATION
 ------------
- 
+ #FRONT-END
  * Step 1: Clone this project to your computer.
 
  * Step 2: Access into your folder Clone
@@ -20,6 +21,8 @@ Make sure your computer installed nodejs and expo
  * Step 3: excute this command: npm install
  
  * Step 4: excute this command to start project: expo start
+ #BACKEND
+	
 
 🔥 CONFIGURATION
 -------------
