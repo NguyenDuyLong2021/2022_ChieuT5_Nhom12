@@ -1,12 +1,14 @@
 package com.freshfood.dao;
 
-import com.freshfood.model.web.Cart;
+import java.util.List;
+
+import com.freshfood.model.web.CartItem;
 
 public interface ICartDao {
 	/*
 	 * get data cart by id cart
 	 * input: id_cart
-	 * output: a cart
+	 * output: a list cart item
 	 */
-	Cart getCart(Long id_cart);
+	List<CartItem> getCart(Long id_cart);
 }

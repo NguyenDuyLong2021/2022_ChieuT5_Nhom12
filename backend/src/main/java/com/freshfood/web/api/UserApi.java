@@ -34,7 +34,7 @@ public class UserApi extends HttpServlet {
 			UserModel user = userService.getUser(id);
 			reponseUser.setStatusCode(200);
 			reponseUser.setMessage("Success");
-			reponseUser.setData(user);
+			reponseUser.setModel(user);
 			mapper.writeValue(resp.getOutputStream(), reponseUser);
 			break;
 		default:
