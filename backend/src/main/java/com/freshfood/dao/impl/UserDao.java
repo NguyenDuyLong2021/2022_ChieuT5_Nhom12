@@ -42,12 +42,7 @@ public class UserDao extends ADao<UserDao> implements IUserDao {
 		} catch (SQLException e) {
 			return null;
 		} finally {
-			try {
-				close(connection, statement, resultset);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			close(connection, statement, resultset);
 		}
 	}
 
