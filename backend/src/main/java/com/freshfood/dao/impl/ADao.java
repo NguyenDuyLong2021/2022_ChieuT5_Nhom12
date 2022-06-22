@@ -32,14 +32,18 @@ public class ADao<T> {
 	 * inclues connection, prestatement, resultset return none
 	 */
 
-	public void close(Object... objects) throws SQLException {
-		for (Object object : objects) {
-			if (object instanceof Connection)
-				((Connection) object).close();
-			else if (object instanceof PreparedStatement)
-				((PreparedStatement) object).close();
-			else if (object instanceof ResultSet)
-				((ResultSet) object).close();
+	public void close(Object... objects) {
+		try {
+			for (Object object : objects) {
+				if (object instanceof Connection)
+					((Connection) object).close();
+				else if (object instanceof PreparedStatement)
+					((PreparedStatement) object).close();
+				else if (object instanceof ResultSet)
+					((ResultSet) object).close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }

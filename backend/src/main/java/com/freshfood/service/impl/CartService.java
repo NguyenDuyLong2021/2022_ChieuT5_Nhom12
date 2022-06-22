@@ -24,12 +24,34 @@ public class CartService implements ICartService {
 		cart.setId_user(id_cart);
 		cart.setListCartItem(cartItems);
 		double totalPrice = 0;
-		//computed total price cart
+		// computed total price cart
 		for (CartItem cartItem : cartItems) {
 			totalPrice += cartItem.getNumber_product() * cartItem.getPrice();
 		}
 		cart.setTotalPrice(totalPrice);
 		return cart;
+	}
+
+	/*
+	 * delete cart item from cart user input: id_cart_item: long ouput: a message
+	 */
+	@Override
+	public String deleteCartItem(long id_cart_item) {
+		if (cartDao.deleteCartItem(id_cart_item) > 0)
+			return "Delete success";
+		return "Delete unsuccess";
+	}
+
+	/*
+	 * delete cart item from cart user
+	 * input: id_cart_item, quantity
+	 * ouput: message
+	 */
+	@Override
+	public String updateCartItem(long id_cart_item, int quantity) {
+		if (cartDao.updateCartItem(id_cart_item, quantity) > 0)
+			return "Update success";
+		return "Update unsuccess";
 	}
 
 }
