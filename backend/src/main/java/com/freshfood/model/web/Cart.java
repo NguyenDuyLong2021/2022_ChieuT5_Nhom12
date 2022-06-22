@@ -1,6 +1,6 @@
 package com.freshfood.model.web;
 import java.util.List;
-public class Cart extends ADate {
+public class Cart {
 	private Long id_cart;// id cart
 	private Long id_user;// id user
 	private List<CartItem> listCartItem;// list cartItem

@@ -5,7 +5,8 @@ import java.util.List;
 public class ObjectReponse<T> {
 	private int statusCode;
 	private String message;
-	private T data;
+	private T model;
+	private T result;
 	private List<?> datas;
 	private Integer total;
 
@@ -25,14 +26,13 @@ public class ObjectReponse<T> {
 		this.message = message;
 	}
 
-	public T getData() {
-		return data;
+	public T getModel() {
+		return model;
 	}
 
-	public void setData(T data) {
-		this.data = data;
+	public void setModel(T model) {
+		this.model = model;
 	}
-
 
 	public List<?> getDatas() {
 		return datas;
@@ -48,5 +48,13 @@ public class ObjectReponse<T> {
 
 	public void setTotal(Integer total) {
 		this.total = total;
+	}
+
+	public T getResult() {
+		return result;
+	}
+
+	public void setResult(T result) {
+		this.result = result;
 	}
 }
