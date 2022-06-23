@@ -16,7 +16,7 @@ import index from "../theme/index";
 import Product from "./common_components/Product";
 import Product1 from "./common_components/Product1";
 
-const Home = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
   const array = [
     { img: require("../assets/img/img.png") },
     { img: require("../assets/img/side_demo_2.jpg") },
@@ -418,4 +418,4 @@ const style = StyleSheet.create({
   //   textAlign: "center",
   // },
 });
-export default Home;
+export default HomeScreen;
