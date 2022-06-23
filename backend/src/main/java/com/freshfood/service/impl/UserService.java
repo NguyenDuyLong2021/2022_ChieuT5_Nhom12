@@ -2,22 +2,31 @@ package com.freshfood.service.impl;
 
 import javax.inject.Inject;
 
-import com.freshfood.dao.impl.UserDao;
-import com.freshfood.model.web.UserModel;
+import com.freshfood.dao.IUserDao;
+import com.freshfood.model.web.User;
 import com.freshfood.service.IUserService;
 
 public class UserService implements IUserService {
 	@Inject
-	private UserDao userDao;
+	private IUserDao userDao;
 
 	/*
-	 * get infor basic user 
-	 * input: id user
-	 * return a user
+	 * get infor basic user input: id user return a user
 	 */
 	@Override
-	public UserModel getUser(Long idUser) {
+	public User getUser(Long idUser) {
 		return userDao.getUser(idUser);
+	}
+
+	/*
+	 * update address user input: id user and a new address output: string message
+	 */
+	@Override
+	public String updateAddress(long id_user, String address) {
+		if (userDao.updateAddress(id_user, address) > 0)
+			return "Update success";
+		else
+			return "Update unsuccess";
 	}
 
 }

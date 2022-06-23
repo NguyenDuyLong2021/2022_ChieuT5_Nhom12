@@ -18,7 +18,7 @@ import com.freshfood.service.IPromotionService;
 import com.freshfood.utils.HttpUtil;
 import com.freshfood.utils.ObjectReponse;
 
-@WebServlet(urlPatterns = { "/cart", "/checkVoucher", "/updateCart/remove", "/updateCart/edit" })
+@WebServlet(urlPatterns = { "/cart", "/checkVoucher", "/updateCart/remove", "/updateCart/edit" ,"/updateCart/addToCart"})
 public class CartApi extends HttpServlet {
 
 	/**
@@ -76,6 +76,16 @@ public class CartApi extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.setSerializationInclusion(Include.NON_NULL);
+		resp.setContentType("application/json");
+		long idCart = Long.parseLong(req.getParameter("id_cart"));
+		CartItem cartItem = HttpUtil.of(req.getReader()).toModel(CartItem.class);
+		String message = cartService.addToCart(idCart, cartItem.getId_product(), cartItem.getQuantity());
+		ObjectReponse<String> delCartItem = new ObjectReponse<String>();
+		delCartItem.setMessage(message);
+		delCartItem.setStatusCode(200);
+		mapper.writeValue(resp.getOutputStream(), delCartItem);
 	}
 
 	@Override
@@ -84,7 +94,7 @@ public class CartApi extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setSerializationInclusion(Include.NON_NULL);
 		resp.setContentType("application/json");
-		String message = cartService.updateCartItem(cartItem.getId_cart_item(), cartItem.getNumber_product());
+		String message = cartService.updateCartItem(cartItem.getId_cart_item(), cartItem.getQuantity());
 		ObjectReponse<String> delCartItem = new ObjectReponse<String>();
 		delCartItem.setMessage(message);
 		delCartItem.setStatusCode(200);

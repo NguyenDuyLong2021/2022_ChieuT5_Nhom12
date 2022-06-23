@@ -21,6 +21,7 @@ public class HttpUtil {
 	 */
 	public <T> T toModel(Class<T> classT) {
 		try {
+			ObjectMapper mapper = new ObjectMapper();
 			return new ObjectMapper().readValue(stringJson, classT);
 		} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block

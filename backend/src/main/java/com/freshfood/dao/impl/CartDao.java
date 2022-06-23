@@ -34,7 +34,7 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 				cartItem.setId_cart_item(resultSet.getLong("id_cart_item"));
 				cartItem.setId_product(resultSet.getLong("id_product"));
 				cartItem.setName_product(resultSet.getString("name_product"));
-				cartItem.setNumber_product(resultSet.getInt("number_product"));
+				cartItem.setQuantity(resultSet.getInt("number_product"));
 				cartItem.setPrice(resultSet.getDouble("price"));
 				cartItem.setThumnail(resultSet.getString("thumnail"));
 				listCartItems.add(cartItem);
@@ -48,11 +48,9 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 			close(connection, statement, resultSet);
 		}
 	}
-	
+
 	/*
-	 * delete cart item from cart user
-	 * input: id_cart_item: long
-	 * ouput: none
+	 * delete cart item from cart user input: id_cart_item: long ouput: none
 	 */
 	@Override
 	public int deleteCartItem(long id_cart_item) {
@@ -60,12 +58,20 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 		Connection connection = getConnection();//
 		PreparedStatement statement = null;//
 		try {
+			connection.setAutoCommit(false);
 			statement = connection.prepareStatement(sql);
 			statement.setLong(1, id_cart_item);
+			connection.commit();
 			return statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return -1;
 		} finally {
 			close(connection, statement);
@@ -73,8 +79,7 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 	}
 
 	/*
-	 * edit quantity of cart item from cart
-	 * input: id_cart_item, quantity product
+	 * edit quantity of cart item from cart input: id_cart_item, quantity product
 	 * ouput: int row effect
 	 */
 	@Override
@@ -83,13 +88,53 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 		Connection connection = getConnection();//
 		PreparedStatement statement = null;//
 		try {
+			connection.setAutoCommit(false);
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, quantity);
 			statement.setLong(2, id_cart_item);
+			connection.commit();
 			return statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return -1;
+		} finally {
+			close(connection, statement);
+		}
+	}
+
+	/*
+	 * add new product to cart input: id cart, id product, quantity output: int row
+	 * effect
+	 */
+	@Override
+	public int addToCart(long idCart, long idProduct, int quantity) {
+		String sql = "insert into cart_item (id_cart, id_product, quantity) values (?,?,?)";
+		Connection connection = getConnection();//
+		PreparedStatement statement = null;//
+		try {
+			connection.setAutoCommit(false);
+			statement = connection.prepareStatement(sql);
+			statement.setLong(1, idCart);
+			statement.setLong(3, idProduct);
+			statement.setInt(3, quantity);
+			connection.commit();
+			return statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return -1;
 		} finally {
 			close(connection, statement);

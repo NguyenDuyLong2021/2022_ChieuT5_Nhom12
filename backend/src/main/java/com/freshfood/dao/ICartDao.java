@@ -23,5 +23,10 @@ public interface ICartDao {
 	 * ouput: int row effect
 	 */
 	int updateCartItem(long id_cart_item, int quantity);
-	
+	/*
+	 * add new product to cart
+	 * input: id cart, id product, quantity
+	 * output:  int row effect
+	 */
+	int addToCart(long idCart, long idProduct, int quantity);
 }

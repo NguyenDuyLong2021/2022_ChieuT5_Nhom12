@@ -21,4 +21,10 @@ public interface ICartService {
 	 * ouput: message
 	 */
 	String updateCartItem(long id_cart_item, int quantity);
+	/*
+	 * add new product to cart 
+	 * input: id cart, id product, quantity 
+	 * output: a message
+	 */
+	String addToCart(long idOrderItem,long idProduct, int quantity);
 }

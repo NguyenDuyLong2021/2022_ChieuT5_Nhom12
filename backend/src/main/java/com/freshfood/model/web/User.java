@@ -3,7 +3,7 @@ package com.freshfood.model.web;
 import javax.enterprise.inject.Model;
 
 @Model
-public class UserModel extends ADate{
+public class User extends ADate{
 	private Long id_user;// id user
 	private String first_name;// first name user
 	private String last_name;// last name user
