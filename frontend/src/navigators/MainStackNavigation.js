@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "../components/Home";
+import HomeScreen from "../components/HomeScreen";
 import CartScreen from "../components/CartScreen";
 import ConfirmOrderScreen from "../components/ConfirmOrderScreen";
 import ProductDetails from "../components/ProductDetails"; //import màn hình
@@ -15,7 +15,7 @@ export default function MainStackNavigation() {
       <Stack.Screen
         options={{ headerShown: false }}
         name="Home"
-        component={Home}
+        component={HomeScreen}
       />
       <Stack.Screen
         options={{
