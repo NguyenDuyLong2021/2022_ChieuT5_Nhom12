@@ -1,6 +1,6 @@
 package com.freshfood.service;
 
-import com.freshfood.model.web.UserModel;
+import com.freshfood.model.web.User;
 
 public interface IUserService {
 	/*
@@ -8,5 +8,12 @@ public interface IUserService {
 	 * input: id user
 	 * return a user
 	 */
-	UserModel getUser(Long id_user);
+	User getUser(Long id_user);
+	
+	/*
+	 * update address user
+	 * input: id user and a new address 
+	 * output: string message
+	 */
+	String updateAddress(long id_user, String address);
 }

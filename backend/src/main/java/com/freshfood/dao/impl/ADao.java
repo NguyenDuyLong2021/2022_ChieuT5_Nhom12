@@ -35,11 +35,11 @@ public class ADao<T> {
 	public void close(Object... objects) {
 		try {
 			for (Object object : objects) {
-				if (object instanceof Connection)
+				if (object instanceof Connection && object != null)
 					((Connection) object).close();
-				else if (object instanceof PreparedStatement)
+				else if (object instanceof PreparedStatement && object != null)
 					((PreparedStatement) object).close();
-				else if (object instanceof ResultSet)
+				else if (object instanceof ResultSet && object != null)
 					((ResultSet) object).close();
 			}
 		} catch (SQLException e) {

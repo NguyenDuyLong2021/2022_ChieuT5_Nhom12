@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freshfood.model.web.Product;
-import com.freshfood.model.web.UserModel;
+import com.freshfood.model.web.User;
 import com.freshfood.service.IProductService;
 import com.freshfood.utils.ObjectReponse;
 
@@ -26,7 +26,7 @@ public class ProductApi extends HttpServlet {
 	@Inject
 	private IProductService productService;
 	@Inject
-	private ObjectReponse<UserModel> reponseProduct;
+	private ObjectReponse<User> reponseProduct;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
