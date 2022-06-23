@@ -7,7 +7,7 @@ import {
   Text,
   Animated,
 } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import CartItem from "./cart_components/CartItem";
 import available from "../theme/_availables";
 import index from "../theme";
@@ -66,6 +66,14 @@ const CartScreen = ({ navigation }) => {
     outputRange: [min, max],
     extrapolate: "clamp",
   });
+  //get cart by id cart
+  const rendeListCartItem=()=>{
+
+  }
+  //delete cart item
+  const deleteCartItem=()=>{
+
+  }
   //render cart item
   const displayCartDetail = () => {
     return (
