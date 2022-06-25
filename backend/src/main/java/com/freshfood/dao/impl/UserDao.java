@@ -61,8 +61,9 @@ public class UserDao extends ADao<UserDao> implements IUserDao {
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, address);
 			statement.setLong(2, id_user);
+			int roweffect = statement.executeUpdate();
 			connection.commit();
-			return statement.executeUpdate();
+			return  roweffect;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

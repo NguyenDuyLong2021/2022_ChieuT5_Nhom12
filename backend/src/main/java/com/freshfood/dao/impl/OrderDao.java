@@ -6,11 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.inject.Inject;
+
+import com.freshfood.dao.ICartDao;
 import com.freshfood.dao.IOrderDao;
 import com.freshfood.model.web.OrderItem;
 import com.freshfood.model.web.OrderProduct;
 
 public class OrderDao extends ADao<OrderProduct> implements IOrderDao {
+	
+	@Inject
+	private ICartDao cartDao;
 
 	/*
 	 * order product input: id_user, id voucher, id_type_payment, date_shipping,
@@ -25,7 +31,6 @@ public class OrderDao extends ADao<OrderProduct> implements IOrderDao {
 				+ "values (?, ?, ?, ?, ?,?);";
 		Connection connection = getConnection();//
 		PreparedStatement statement = null;//
-		PreparedStatement statement2=null;
 		ResultSet resultSet = null;
 		try {
 			connection.setAutoCommit(false);
@@ -45,15 +50,18 @@ public class OrderDao extends ADao<OrderProduct> implements IOrderDao {
 					idOrder = resultSet.getLong(1);
 				}
 				// query using insert order irtem into database
-				String sql2 = "";
+				String sql2 = "insert into order_item (id_order, id_product, number_product) values (?	,?,?)";
+				statement = connection.prepareStatement(sql2);
 				for (OrderItem oi : orderProduct.getOrderItems()) {
-					sql2+="insert into order_item (id_order, id_product, number_product) values (" + idOrder + ","
-							+ oi.getId_product() + "," + oi.getQuantity() + ");";
+					statement.setLong(1, idOrder);
+					statement.setLong(2,oi.getId_product());
+					statement.setInt(3, oi.getQuantity());
+					statement.addBatch();
 				}
-				statement2 = connection.prepareStatement(sql2);
-				int roweffect= statement2.executeUpdate();
+				statement.executeBatch();
+				cartDao.clearCart(idUser);
 				connection.commit();
-				return roweffect;
+				return 1;
 			}
 			return -1;
 		} catch (SQLException e) {
@@ -67,7 +75,7 @@ public class OrderDao extends ADao<OrderProduct> implements IOrderDao {
 			}
 			return -1;
 		} finally {
-			close(connection, statement, statement2, resultSet);
+			close(connection, statement, resultSet);
 		}
 	}
 

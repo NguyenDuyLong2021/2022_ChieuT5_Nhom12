@@ -5,21 +5,22 @@ CREATE TABLE user (
     id_user BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
+    avatar varchar(255) DEFAULT  "/assests/img/avt-user/default-user.png",
     phone_number VARCHAR(100) NULL,
     email VARCHAR(100) NOT NULL,
     address VARCHAR(255) NULL,
     password_user VARCHAR(100) NOT NULL,
     is_delete BOOLEAN DEFAULT FALSE,
-    create_date TIMESTAMP NOT NULL,
-    modified_date TIMESTAMP,
-    id_groud_role INT
+    create_date TIMESTAMP DEFAULT now(),
+    modified_date TIMESTAMP DEFAULT null,
+    id_groud_role INT DEFAULT 0
 );
 -- create table cart 
 CREATE TABLE cart (
     id_cart bigint PRIMARY KEY AUTO_INCREMENT,
     id_user bigint NOT NULL,
-    create_date timestamp NOT NULL,
-    modified_date timestamp NOT NULL
+    create_date timestamp DEFAULT now(),
+    modified_date timestamp DEFAULT NULL
 );
 -- create table cart item 
 CREATE TABLE cart_item (
@@ -36,10 +37,12 @@ CREATE TABLE product (
     thumnail VARCHAR(255),
     id_category bigint NOT NULL,
     available BOOLEAN DEFAULT TRUE,
-    create_date timestamp NOT NULL,
+    create_date timestamp DEFAULT now(),
     modified_date timestamp ,
     createBy VARCHAR(255),
-    modifiedBy VARCHAR(255)
+    modifiedBy VARCHAR(255),
+    rate_discount INT DEFAULT 0,
+    id_unit int not null
 );
 CREATE TABLE image_product (
     id_image_product bigint PRIMARY KEY AUTO_INCREMENT,
@@ -50,7 +53,7 @@ CREATE TABLE category (
     id_category bigint PRIMARY KEY AUTO_INCREMENT,
     code_category char(20) not null,
     name_category VARCHAR(100),
-    create_date timestamp NOT NULL,
+    create_date timestamp DEFAULT now(),
     modified_date timestamp 
 );
 CREATE TABLE promotion (
@@ -92,9 +95,10 @@ CREATE TABLE user_voucher (
 CREATE TABLE type_payment (
     id_type_payment bigint PRIMARY KEY AUTO_INCREMENT,
     name_payment VARCHAR(100),
-    create_date timestamp NOT NULL,
+    create_date timestamp default now(),
     modified_date timestamp 
 );
+create table unit (id_unit int PRIMARY KEY AUTO_INCREMENT, code_unit varchar(20), name_unit varchar(50), create_date timestamp default now(), modifide_date timestamp null);
 
 -- add foreign keys
 alter table cart add constraint fk_id_user foreign key (id_user) references user(id_user);
@@ -110,3 +114,4 @@ alter table user_voucher add constraint fk_id_user_voucher foreign key (id_user)
 alter table user_voucher add constraint fk_id_voucher_voucher foreign key (id_voucher) references voucher(id_voucher);
 alter table order_item add constraint fk_id_order foreign key (id_order) references order_product(id_order);
 alter table order_item add constraint fk_id_product_oi foreign key (id_product) references product(id_product);
+alter table product add constraint fk_id_unit foreign key (id_unit) references unit(id_unit);
