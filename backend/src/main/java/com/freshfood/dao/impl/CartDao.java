@@ -92,8 +92,9 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, quantity);
 			statement.setLong(2, id_cart_item);
+			int roweffect = statement.executeUpdate();
 			connection.commit();
-			return statement.executeUpdate();
+			return  roweffect;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,17 +116,18 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 	 */
 	@Override
 	public int addToCart(long idCart, long idProduct, int quantity) {
-		String sql = "insert into cart_item (id_cart, id_product, quantity) values (?,?,?)";
+		String sql = "insert into cart_item (id_cart, id_product, number_product) values (?,?,?);";
 		Connection connection = getConnection();//
 		PreparedStatement statement = null;//
 		try {
 			connection.setAutoCommit(false);
 			statement = connection.prepareStatement(sql);
 			statement.setLong(1, idCart);
-			statement.setLong(3, idProduct);
+			statement.setLong(2, idProduct);
 			statement.setInt(3, quantity);
+			int roweffected = statement.executeUpdate();
 			connection.commit();
-			return statement.executeUpdate();
+			return roweffected;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,4 +142,37 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 			close(connection, statement);
 		}
 	}
+
+	/*
+	 * clear all item in cart
+	 * input: id user(idc cart)
+	 * out put: number row effected
+	 */
+	@Override
+	public int clearCart(long idUser) {
+		String sql = "delete from cart_item where id_cart =?";
+		Connection connection = getConnection();//
+		PreparedStatement statement = null;//
+		try {
+			connection.setAutoCommit(false);
+			statement = connection.prepareStatement(sql);
+			statement.setLong(1, idUser);
+			int roweffect = statement.executeUpdate();
+			connection.commit();
+			return  roweffect;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return -1;
+		} finally {
+			close(connection, statement);
+		}
+	}
+	
 }

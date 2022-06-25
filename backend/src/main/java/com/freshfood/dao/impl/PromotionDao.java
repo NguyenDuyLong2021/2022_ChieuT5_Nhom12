@@ -37,14 +37,7 @@ public class PromotionDao extends ADao<Promotion> implements IPromotionDao{
 			e.printStackTrace();
 			return false;
 		} finally {
-			try {
-				connection.close();
-				resultSet.close();
-				statement.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			close(statement, resultSet, connection);
 		}
 	}
 
@@ -74,14 +67,7 @@ public class PromotionDao extends ADao<Promotion> implements IPromotionDao{
 			e.printStackTrace();
 			return null;
 		} finally {
-			try {
-				connection.close();
-				resultSet.close();
-				statement.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			close(statement, resultSet, connection);
 		}
 	}
 

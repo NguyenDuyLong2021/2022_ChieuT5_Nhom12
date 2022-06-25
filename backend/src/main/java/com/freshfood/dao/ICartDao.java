@@ -29,4 +29,10 @@ public interface ICartDao {
 	 * output:  int row effect
 	 */
 	int addToCart(long idCart, long idProduct, int quantity);
+	/*
+	 * clear all item in cart
+	 * input: id user(idc cart)
+	 * out put: number row effected
+	 */
+	int clearCart(long idUser);
 }
