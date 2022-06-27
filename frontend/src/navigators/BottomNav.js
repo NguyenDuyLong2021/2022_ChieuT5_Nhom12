@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import available from "../theme/_availables";
 import { StyleSheet, Image } from "react-native";
 import React from "react";
-import Home from "../components/Home";
+import HomeScreen from "../components/HomeScreen";
 import MainStackNavigation from "./MainStackNavigation";
 const Tab = createBottomTabNavigator();
 const BottomNav = () => {
@@ -47,7 +47,7 @@ const BottomNav = () => {
           tabBarActiveTintColor: available.orange,
         }}
         name="Voucher"
-        component={Home}
+        component={HomeScreen}
       />
       <Tab.Screen
         options={{
@@ -65,7 +65,7 @@ const BottomNav = () => {
           tabBarActiveTintColor: available.orange,
         }}
         name="Yêu thích"
-        component={Home}
+        component={HomeScreen}
       />
       <Tab.Screen
         options={{
@@ -79,7 +79,7 @@ const BottomNav = () => {
           tabBarActiveTintColor: available.orange,
         }}
         name="Cá nhân"
-        component={Home}
+        component={HomeScreen}
       />
     </Tab.Navigator>
   );
