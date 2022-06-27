@@ -11,4 +11,10 @@ public interface IProductService {
 	 * return a list product
 	 */
 	List<Product> getProducts();
+	/*
+	 * get detail product by id product
+	 * input: id product
+	 * out put: a product
+	 */
+	Product getDetailProduct(long idProduct);
 }

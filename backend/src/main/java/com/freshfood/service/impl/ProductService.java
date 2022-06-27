@@ -23,4 +23,14 @@ public class ProductService implements IProductService {
 		return productDao.getProducts();
 	}
 
+	/*
+	 * get detail product by id product
+	 * input: id product
+	 * out put: a product
+	 */
+	@Override
+	public Product getDetailProduct(long idProduct) {
+		return productDao.getDetailProduct(idProduct);
+	}
+
 }

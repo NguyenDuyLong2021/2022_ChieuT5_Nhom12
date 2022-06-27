@@ -17,7 +17,7 @@ import com.freshfood.model.web.User;
 import com.freshfood.service.IProductService;
 import com.freshfood.utils.ObjectReponse;
 
-@WebServlet(urlPatterns = { "/products", "/api-product/post" })
+@WebServlet(urlPatterns = { "/products", "/product" })
 public class ProductApi extends HttpServlet {
 
 	/**
@@ -26,7 +26,7 @@ public class ProductApi extends HttpServlet {
 	@Inject
 	private IProductService productService;
 	@Inject
-	private ObjectReponse<User> reponseProduct;
+	private ObjectReponse<Product> reponseProduct;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,6 +43,17 @@ public class ProductApi extends HttpServlet {
 			reponseProduct.setTotal(products.size());
 			mapper.writeValue(resp.getOutputStream(), reponseProduct);
 			break;
+
+		case "/foodfresh/product": {
+			long idProduct = Long.parseLong(req.getParameter("id_product"));
+			Product product = productService.getDetailProduct(idProduct);
+			ObjectReponse<Product> reponse = new ObjectReponse<Product>();
+			reponse.setStatusCode(200);
+			reponse.setMessage("Success");
+			reponse.setModel(product);
+			mapper.writeValue(resp.getOutputStream(), reponse);
+			break;
+		}
 		default:
 			break;
 		}
