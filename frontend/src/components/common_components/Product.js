@@ -4,7 +4,7 @@ import index from "../../theme/index";
 import React from "react";
 const Product = (props) => {
   return (
-    <TouchableOpacity
+    <TouchableOpacity key={props.mykey}
       style={style.product}
       // Do chỗ này là component con nền cần truyền navigatio từ  màn hình cha vào thông qua props
       // ở đây chúng ta truyền từ màn hình cha là home
@@ -14,7 +14,7 @@ const Product = (props) => {
         <Image
           resizeMode="contain"
           style={style.img_product}
-          source={props.thumbnail}
+          source={{uri: props.thumbnail}}
         />
       </View>
       <Text style={style.name_category}>{props.name_product}</Text>

@@ -6,7 +6,7 @@ const width_device = Dimensions.get("window").width;
 // ../../assets/img/slide_demo_1.jpeg
 const ItemSlide = (props) => {
   return (
-    <View key={props.id} style={style.item_slide}>
+    <View key={props.myKey} style={style.item_slide}>
       <Image
         style={style.img_slide}
         source={props.img}
