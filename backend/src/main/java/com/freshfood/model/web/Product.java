@@ -1,5 +1,7 @@
 package com.freshfood.model.web;
 
+import java.util.List;
+
 public class Product extends ADate{
 	private Long id_product;// id product
 	private String name_product;// name product
@@ -10,6 +12,9 @@ public class Product extends ADate{
 	private boolean available;// available product(is product stop)
 	private String create_by;// who was create
 	private String modified_by;// who was modified
+	private List<ImageProduct> listImages ;//list images
+	private Double rate_discount;//rate discount
+	private String name_unit ;
 
 	//get the product's id
 	public Long getId_product() {
@@ -84,6 +89,24 @@ public class Product extends ADate{
 	}
 	public void setThumnail(String thumbnail) {
 		this.thumnail = thumbnail;
+	}
+	public List<ImageProduct> getListImages() {
+		return listImages;
+	}
+	public void setListImages(List<ImageProduct> listImages) {
+		this.listImages = listImages;
+	}
+	public Double getRate_discount() {
+		return rate_discount;
+	}
+	public void setRate_discount(Double rate_discount) {
+		this.rate_discount = rate_discount;
+	}
+	public String getName_unit() {
+		return name_unit;
+	}
+	public void setName_unit(String name_unit) {
+		this.name_unit = name_unit;
 	}
 
 }
