@@ -2,7 +2,10 @@ import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import available from "../../theme/_availables";
 import React, { useState } from "react";
 import index from "../../theme";
+import { useDispatch, useSelector } from "react-redux";
+
 const CartItem = (props) => {
+
   const [quantity, setQuantity] = useState(props.quantity);
   //change number product cart item
   const changeNumberProduct = (quantity) => {
@@ -12,6 +15,9 @@ const CartItem = (props) => {
   const deleteProduct=(idProduct)=>{
 
   }
+  const product = useSelector((state) => state.productReducer.product);
+  console.log("chi tiết sản phẩm - CartItem", product);
+
   return (
     <View style={style.cart_item}>
       <Image resizeMode="cover" style={style.img} source={props.img} />
@@ -40,6 +46,7 @@ const CartItem = (props) => {
             ></Image>
           </TouchableOpacity>
         </View>
+
       </View>
       <View style={style.options}>
         <Image

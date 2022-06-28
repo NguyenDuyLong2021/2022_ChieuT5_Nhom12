@@ -19,6 +19,7 @@ import Product1 from "./common_components/Product1";
 import productsAPI from "../api/productsAPI";
 
 const HomeScreen = ({ navigation }) => {
+  // 2
   const [l, sl] = useState(null);
   const [loading, setLoading] = useState(true)
   useEffect(() => {
@@ -27,6 +28,7 @@ const HomeScreen = ({ navigation }) => {
       setLoading(false)
     });
   }, []);
+  
   const array = [
     { img: require("../assets/img/img.png") },
     { img: require("../assets/img/side_demo_2.jpg") },
@@ -171,19 +173,23 @@ const HomeScreen = ({ navigation }) => {
           </ScrollView>
           <Text style={style.relatedNew}>Sản phẩm mới</Text>
           <ScrollView horizontal={true}>
+        
             <View style={index.style.flex_wrap}>
+              
               {l.datas.map((product, id) => (
                 // navigation ={naviagation}
                 //khi vao trong chúng ta chỉ cần props.navigatin là lấy được navigation
+                // 3
                 <Product
                   navigation={navigation}
                   mykey={product.id_product}
                   name_product={product.name_product}
                   price={product.price}
                   thumbnail={
-                    "http://172.16.2.207:8080/foodfresh" + product.thumnail
+                    "http://192.168.1.10:8080/foodfresh" + product.thumnail
                   }
                 />
+                
               ))}
             </View>
           </ScrollView>
