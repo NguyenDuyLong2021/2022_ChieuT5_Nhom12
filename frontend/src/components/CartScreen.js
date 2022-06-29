@@ -14,11 +14,7 @@ import index from "../theme";
 const CartScreen = ({ navigation }, props) => {
   const max = 200;
   const min = 0;
-  const distance = max - min;
-
-  // const product = useSelector((state) => state.productReducer.product);
-  // console.log("Chi tiết sản phẩm - CartItem", product.name_product);
- 
+  const distance = max - min; 
 
   const [quantity, setQuantity] = useState(props.quantity); 
 

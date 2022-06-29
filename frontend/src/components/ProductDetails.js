@@ -21,6 +21,7 @@ import * as productAction from "../action/productAction";
 import cartApi from "../api/cartApi";
 // import Product from "./common_components/Product";
 
+
 const ProductDetails = ({ navigation },{ props }) => {
 
   // const [l, sl] = useState(null);

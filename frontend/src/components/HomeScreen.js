@@ -29,6 +29,7 @@ const HomeScreen = ({ navigation }) => {
     });
   }, []);
   
+  
   const array = [
     { img: require("../assets/img/img.png") },
     { img: require("../assets/img/side_demo_2.jpg") },
