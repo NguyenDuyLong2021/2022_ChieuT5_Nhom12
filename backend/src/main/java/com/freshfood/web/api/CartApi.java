@@ -18,7 +18,7 @@ import com.freshfood.service.IPromotionService;
 import com.freshfood.utils.HttpUtil;
 import com.freshfood.utils.ObjectReponse;
 
-@WebServlet(urlPatterns = { "/cart", "/checkVoucher", "/updateCart/remove", "/updateCart/edit" ,"/updateCart/addToCart"})
+@WebServlet(urlPatterns = { "/cart", "/checkVoucher", "/updateCart/remove", "/updateCart/edit" ,"/updateCart/addToCart" ,"/booleanProduct", "/getQuantity"})
 public class CartApi extends HttpServlet {
 
 	/**
@@ -37,6 +37,7 @@ public class CartApi extends HttpServlet {
 		mapper.setSerializationInclusion(Include.NON_NULL);
 		resp.setContentType("application/json");
 		switch (uri) {
+		
 		case "/foodfresh/cart":
 			Long idCart = Long.parseLong(req.getParameter("id_cart"));
 			Cart cart = cartService.getCart(idCart);
@@ -46,6 +47,25 @@ public class CartApi extends HttpServlet {
 			reponse.setModel(cart);
 			mapper.writeValue(resp.getOutputStream(), reponse);
 			break;
+			
+		case "/foodfresh/getQuantity":
+			long idProductQuantity = Long.parseLong(req.getParameter("id_product")); 
+			int quantity = cartService.getQuantity(idProductQuantity); 
+			ObjectReponse<Cart> reponseQuantity = new ObjectReponse<Cart>();
+			reponseQuantity.setStatusCode(200);
+			reponseQuantity.setMessage("Quantity: " + quantity);
+//			reponseQuantity.setModel(cart);
+			mapper.writeValue(resp.getOutputStream(), reponseQuantity);
+			break;
+			
+		case "/foodfresh/booleanProduct":
+			long idProduct = Long.parseLong(req.getParameter("id_product")); 
+			String resultProduct = cartService.booleanProduct(idProduct);
+			ObjectReponse<Boolean> rpsCheckProduct = new ObjectReponse<Boolean>();
+			rpsCheckProduct.setStatusCode(200);
+			rpsCheckProduct.setMessage(resultProduct); 
+			mapper.writeValue(resp.getOutputStream(), rpsCheckProduct); 
+			
 		case "/foodfresh/checkVoucher": {
 			long idUser = Long.parseLong(req.getParameter("id_user"));
 			String codeVoucher = req.getParameter("codeVoucher");
@@ -94,7 +114,7 @@ public class CartApi extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setSerializationInclusion(Include.NON_NULL);
 		resp.setContentType("application/json");
-		String message = cartService.updateCartItem(cartItem.getId_cart_item(), cartItem.getQuantity());
+		String message = cartService.updateCartItem(cartItem.getId_product(), cartItem.getQuantity());
 		ObjectReponse<String> delCartItem = new ObjectReponse<String>();
 		delCartItem.setMessage(message);
 		delCartItem.setStatusCode(200);

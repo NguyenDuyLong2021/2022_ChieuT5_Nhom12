@@ -48,7 +48,42 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 			close(connection, statement, resultSet);
 		}
 	}
-
+	
+	/*
+	 * get quantity of cart item from cart input: id_product
+	 * ouput: int row effect
+	 */
+	@Override
+	public int getQuantity (long idProduct) {
+		String sql = "select * from cart_item where id_product = ?;";
+		Connection connection = getConnection();//
+		PreparedStatement statement = null;//
+		int result = -1 ;
+		try {
+			connection.setAutoCommit(false);
+			statement = connection.prepareStatement(sql);
+			statement.setLong(1, idProduct);  
+			ResultSet resultSet = statement.executeQuery();
+			System.out.println(resultSet);  
+			
+			while (resultSet.next()) { 
+				result = resultSet.getInt("number_product");
+			}
+			return result;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return result;
+		} finally {
+			close(connection, statement);
+		}
+	}
 	/*
 	 * delete cart item from cart user input: id_cart_item: long ouput: none
 	 */
@@ -83,15 +118,17 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 	 * ouput: int row effect
 	 */
 	@Override
-	public int updateCartItem(long id_cart_item, int quantity) {
-		String sql = "update cart_item set number_product=?  where id_cart_item=? ";
+	public int updateCartItem(long idProduct, int quantity) {
+		String sql = "update cart_item set number_product=?  where id_product=? ";
 		Connection connection = getConnection();//
 		PreparedStatement statement = null;//
+		int quantitySold = getQuantity (idProduct) + quantity ;
+		
 		try {
 			connection.setAutoCommit(false);
 			statement = connection.prepareStatement(sql);
-			statement.setInt(1, quantity);
-			statement.setLong(2, id_cart_item);
+			statement.setInt(1, quantitySold);
+			statement.setLong(2, idProduct);
 			int roweffect = statement.executeUpdate();
 			connection.commit();
 			return  roweffect;
@@ -105,6 +142,36 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 				e1.printStackTrace();
 			}
 			return -1;
+		} finally {
+			close(connection, statement);
+		}
+	}
+	/*
+	 * booleanProduct (idProduct)
+	 * effect
+	 */ 
+	@Override
+	public boolean booleanProduct (long idProduct) {
+		String sql = "select * from freshfood.cart_item where id_product = ?;";
+		Connection connection = getConnection();//
+		PreparedStatement statement = null;//
+		try {
+			connection.setAutoCommit(false);
+			statement = connection.prepareStatement(sql); 
+			statement.setLong(1, idProduct); 
+			ResultSet result = statement.executeQuery();
+			connection.commit();
+			return result.next();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return false;
 		} finally {
 			close(connection, statement);
 		}

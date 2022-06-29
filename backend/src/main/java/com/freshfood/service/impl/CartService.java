@@ -62,5 +62,28 @@ public class CartService implements ICartService {
 			return "Add success";
 		return "Add unsuccess";
 	}
+	/*
+	 * boolean product
+	 * message
+	 */
+	
+	@Override
+	public String booleanProduct(long idProduct) {
+		// TODO Auto-generated method stub
+		if (cartDao.booleanProduct(idProduct))
+			return "True";
+		return "False";
+	}
+	
+	/*
+	 * getQuantity
+	 * message
+	 */ 
+	@Override
+	public int getQuantity(long idProduct) {
+		// TODO Auto-generated method stub
+		return cartDao.getQuantity(idProduct);
+	}
+	 
 
 }
