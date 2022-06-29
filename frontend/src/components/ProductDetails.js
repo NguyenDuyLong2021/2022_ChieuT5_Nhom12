@@ -85,7 +85,7 @@ const ProductDetails = ({ navigation }) => {
             </View>
       <SearchComponent />   
       
-     <Image style={{height: 100, with : "100%"}}
+     <Image style={{height: 100, width : "100%"}}
      source={require("../assets/img_ProductDetails/img.png")}
      />
 

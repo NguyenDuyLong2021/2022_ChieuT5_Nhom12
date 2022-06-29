@@ -5,6 +5,7 @@ import available from "../../theme/_availables";
 const width_device = Dimensions.get("window").width;
 // ../../assets/img/slide_demo_1.jpeg
 const ItemSlide = (props) => {
+  console.log("key ", props.myKey)
   return (
     <View key={props.myKey} style={style.item_slide}>
       <Image

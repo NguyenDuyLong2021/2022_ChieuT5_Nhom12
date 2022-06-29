@@ -61,8 +61,9 @@ public class CartDao extends ADao<Cart> implements ICartDao {
 			connection.setAutoCommit(false);
 			statement = connection.prepareStatement(sql);
 			statement.setLong(1, id_cart_item);
-			connection.commit();
-			return statement.executeUpdate();
+			 int rowEffect= statement.executeUpdate();
+			 connection.commit();
+			 return rowEffect;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

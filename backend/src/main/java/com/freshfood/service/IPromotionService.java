@@ -1,16 +1,18 @@
 package com.freshfood.service;
 
+import com.freshfood.model.web.Voucher;
+
 public interface IPromotionService {
 /*
  * check validate voucher
  * input: id user and code voucher
  * output: true or false
  */
-	boolean checkValidateVoucher(long id_user, String codeVoucher);
+	Voucher checkValidateVoucher(long id_user, String codeVoucher);
 	/*
 	 * check voucher is time out
 	 * input: timeout
-	 * output: true or false
+	 * output: a voucher
 	 */
-	boolean checkTimeout(String codeVouc);
+	Voucher checkTimeout(String codeVouc);
 }

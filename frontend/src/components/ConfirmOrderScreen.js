@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import layout from "../theme/layout";
 import available from "../theme/_availables";
 import index from "../theme";
+import { useSelector } from "react-redux";
 import { Modal, TextInput } from "react-native-web";
 import InputComponent from "../components/common_components/InputComponent";
 import RadioForm, {
@@ -19,21 +20,24 @@ const ConfirmOrderScreen = () => {
   //state of modal edit address
   const [statePayment, setStatePayment] = useState(0);
   const [showEditAddress, setShowEditAddress] = useState(false);
+  const voucher = useSelector(state=> state.cartReducer.voucher)
+  const user = useSelector(state=> state.userReducer.user)
+  console.log(voucher ,"nè")
   return (
     <View style={style.confirm_order_screen}>
       <View style={style.row}>
         <Text style={index.style.heading_1}>Thông tin khách hàng</Text>
-        <Text style={index.style.color_text_2}>Thông tin khách hàng</Text>
+        <Text style={index.style.color_text_2}>{user.last_name} {user.first_name}</Text>
       </View>
       <View style={style.row}>
         <Text style={index.style.heading_1}>Số điện thoại</Text>
-        <Text style={index.style.color_text_2}>033333333</Text>
+        <Text style={index.style.color_text_2}>{user.phone_number}</Text>
       </View>
       <View style={style.row}>
         <Text style={index.style.heading_1}>Địa chỉ</Text>
         <View style={layout.style.flex_row}>
           <Text style={index.style.color_text_2}>
-            Đường , phường 2, quận 3, tỉnh 4
+            {user.address}
           </Text>
           <TouchableOpacity
             onPress={() => setShowEditAddress(!showEditAddress)}
@@ -83,7 +87,7 @@ const ConfirmOrderScreen = () => {
           XÁC NHẬN ĐẶT HÀNG
         </Text>
       </TouchableOpacity>
-      <PopUp />
+      {/* <PopUp /> */}
     </View>
   );
 };

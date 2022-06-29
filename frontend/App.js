@@ -1,16 +1,15 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomNav from "./src/navigators/BottomNav";
-const Context = React.createContext();
+import store from './store'
+import {Provider} from "react-redux"
 
 export default function App() {
   return (
-    <Context.Provider value={{ color: "red" }}>
+    <Provider store={store}>
       <NavigationContainer>
         <BottomNav /> 
-         {/* <CartScreen /> */}
-        {/* <ProductDetails/> */}
       </NavigationContainer>
-    </Context.Provider>
+    </Provider>
   );
 }

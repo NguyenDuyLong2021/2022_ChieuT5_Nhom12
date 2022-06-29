@@ -4,7 +4,7 @@ import index from "../../theme/index";
 import React from "react";
 const Product = (props) => {
   return (
-    <TouchableOpacity key={props.mykey}
+    <TouchableOpacity key={props.key}
       style={style.product}
       // Do chỗ này là component con nền cần truyền navigatio từ  màn hình cha vào thông qua props
       // ở đây chúng ta truyền từ màn hình cha là home
@@ -45,7 +45,7 @@ const style = StyleSheet.create({
     color: available.blue,
     fontWeight: available.fw_1,
     fontSize: 20,
-    backgroundColor:"while"
+    backgroundColor:available.white
   },
   price: {
     textAlign: "center",
