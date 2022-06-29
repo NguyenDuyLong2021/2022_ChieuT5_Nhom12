@@ -3,7 +3,7 @@ import queryString from 'query-string'
 
 // Thiết lập cấu hình mặc định cho http request
 const axiosClient = axios.create({
-    baseURL: "http://192.168.1.7:8080/foodfresh",
+    baseURL: "http://192.168.1.9:8080/foodfresh",
     headers: {
         'content-type': 'application/json',
         'Access-Control-Allow-Origin': '*',

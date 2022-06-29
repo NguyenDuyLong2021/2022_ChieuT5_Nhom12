@@ -11,10 +11,17 @@ import React, { useState, useRef, useEffect } from "react";
 import CartItem from "./cart_components/CartItem";
 import available from "../theme/_availables";
 import index from "../theme";
-const CartScreen = ({ navigation }) => {
+const CartScreen = ({ navigation }, props) => {
   const max = 200;
   const min = 0;
   const distance = max - min;
+
+  // const product = useSelector((state) => state.productReducer.product);
+  // console.log("Chi tiết sản phẩm - CartItem", product.name_product);
+ 
+
+  const [quantity, setQuantity] = useState(props.quantity); 
+
   const array = [
     {
       name_product: "Đậu hà lan",
@@ -22,44 +29,40 @@ const CartScreen = ({ navigation }) => {
       img: require("../assets/img/TantasDetracto.png"),
       quantity: 6,
     },
-    {
-      name_product: "Cà chua",
-      price: "67000",
-      priceOld: "80000",
-      img: require("../assets/img_ProductDetails/tomato.png"),
-    },
-    {
-      name_product: "Chanh vàng",
-      price: "115000",
-      img: require("../assets/img/NecinEssentelo.png"),
-      quantity: 3,
-    },
-    {
-      name_product: "Gạo",
-      price: "67500",
-      img: require("../assets/img/VerantInterpretaris.png"),
-      quantity: 1,
-    },
-    {
-      name_product: "Bơ",
-      price: "90000",
-      img: require("../assets/img/ZalorumAliquam.png"),
-      quantity: 8,
-    },
-    {
-      name_product: "Cam",
-      price: "40000",
-      img: require("../assets/img_ProductDetails/orange.png"),
-      quantity: 8,
-    },
-    {
-      name_product: "Đào",
-      price: "40000",
-      img: require("../assets/img_ProductDetails/dig.png"),
-      quantity: 7,
-    },
+    // {
+    //   name_product: "Chanh vàng",
+    //   price: "115000",
+    //   img: require("../assets/img/NecinEssentelo.png"),
+    //   quantity: 3,
+    // },
+    // {
+    //   name_product: "Gạo",
+    //   price: "67500",
+    //   img: require("../assets/img/VerantInterpretaris.png"),
+    //   quantity: 1,
+    // },
+    // {
+    //   name_product: "Bơ",
+    //   price: "90000",
+    //   img: require("../assets/img/ZalorumAliquam.png"),
+    //   quantity: 8,
+    // },
+    // {
+    //   name_product: "Cam",
+    //   price: "40000",
+    //   img: require("../assets/img_ProductDetails/orange.png"),
+    //   quantity: 8,
+    // },
+    // {
+    //   name_product: "Đào",
+    //   price: "40000",
+    //   img: require("../assets/img_ProductDetails/dig.png"),
+    //   quantity: 7,
+    // },
   ];
+
   const [cart, setCart] = useState(array);
+  // const [cart, setCart] = useState(navigation);
   const [pointY, setPointY] = useState(new Animated.Value(200)); // point y of pop up, init is 0
   const transformY = pointY.interpolate({
     inputRange: [0, distance],
@@ -78,6 +81,7 @@ const CartScreen = ({ navigation }) => {
   const displayCartDetail = () => {
     return (
       <ScrollView
+        onPress={addProduct} 
         style={[index.style.background_color, style.view_scroll]}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: pointY } } }],

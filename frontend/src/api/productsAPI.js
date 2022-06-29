@@ -8,11 +8,6 @@ const productsAPI = {
   getDetailProduct:(id)=>{
     // http://localhost:8080/foodfresh/product?id_product=1
     return axiosClient.get(`/product?id_product=${id}`)
-  },
-  //bước 1
-  addToCart:(id)=>{
-    // http://localhost:8080/foodfresh/updateCart/addToCart??id_product=1
-    return axiosClient.get(`/updateCart/addToCart?id_product=${id}`)
-  },
-};
+  }, 
+}; 
 export default productsAPI;

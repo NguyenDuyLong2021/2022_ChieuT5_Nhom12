@@ -18,9 +18,11 @@ import SearchComponent from "./common_components/SearchComponent";
 import Product1 from "./common_components/Product1";
 import { useDispatch, useSelector } from "react-redux";
 import * as productAction from "../action/productAction";
+import cartApi from "../api/cartApi";
 // import Product from "./common_components/Product";
 
-const ProductDetails = ({ navigation }, props) => {
+const ProductDetails = ({ navigation },{ props }) => {
+
   // const [l, sl] = useState(null);
   // const [loading, setLoading] = useState(true)
   // useEffect(() => {
@@ -29,25 +31,27 @@ const ProductDetails = ({ navigation }, props) => {
   //     setLoading(false)
   //   });
   // }, []);
+   
 
   const dispacth = useDispatch();
-  //bước 2
-  const addProduct = () => {
-    props.navigation.navigate("CartItem");
-    dispacth(productAction.addProduct(props.mykey))
-  };
-  
 
-  const [quantity, setQuantity] = useState(1);
-  //change number product cart item
-  // const quantity = 1;
+  const [quantity, setQuantity] = useState(1); 
+
+  //change number product cart item 
   const quantityst = quantity +"";
   const changeNumberProduct = (quantity) => {
     setQuantity(quantity);
   };
 
   const product = useSelector((state) => state.productReducer.product); 
+  // console.log("chi tiết sản phẩm - ProductDetails", product);
 
+  const addToCart= ()=>{    
+    // navigation.navigate("CartScreen");  
+    cartApi.addToCart(1, {id_product: product.id_product,quantity}) 
+  }   
+
+   
   // export default function productDetails() {
   const array = [
     {
@@ -137,15 +141,14 @@ const ProductDetails = ({ navigation }, props) => {
 
         <ScrollView horizontal={true}>
           {product !== null
-            ? product.listImages.map((image) => (
+            ?product.listImages.map((image) => (
                 <Image
-                  source={{ uri: "http://192.168.1.10:8080/foodfresh" + image.image }}
+                  source={{ uri: "http://192.168.1.9:8080/foodfresh" + image.image }}
                   // source={require(product)}
                   style={styles.img_dig}
                 />
               ))
             : null}
-          
         </ScrollView>
 
         <Image
@@ -160,19 +163,14 @@ const ProductDetails = ({ navigation }, props) => {
           <ScrollView horizontal={true}>
           {/* <View style={{ borderColor: "black" }}> */}
           {product !== null
-            ? product.listImages.map((image) => (
+            ?product.listImages.map((image) => (
                 <Image
-                  source={{ uri: "http://192.168.1.7:8080/foodfresh" + image.image }}
+                  source={{ uri: "http://192.168.1.9:8080/foodfresh" + image.image }}
                   // source={require(product)}
                   style={styles.imgIcon_dig}
                 />
               ))
-            : null}
-            {/* <Image
-              source={require("../assets/img_ProductDetails/dig.png")}
-              style={styles.imgIcon_dig}
-            /> */}
-          {/* </View> */}
+            : null} 
           </ScrollView>
 
           {/* </TouchableOpacity> */}
@@ -206,13 +204,9 @@ const ProductDetails = ({ navigation }, props) => {
           {/* {/* Đào (danh pháp khoa học: Prunus persica) là một loài cây được trồng để
           lấy quả hay hoa. Nó là một loài cây sớm rụng lá, thân gỗ nhỏ, có thể
           cao tới 5–10 m. */}
-          {/* 
-          {product.available} 
-          {product.decripstion}
-          {product.name_product}
-          {product.name_unit}
-          {product.price}
-          {product.rate_discount} */}
+           
+          {product.decripstion} 
+
         </Text>
         <Text style={styles.weight}>Trọng lượng</Text>
 
@@ -261,8 +255,11 @@ const ProductDetails = ({ navigation }, props) => {
           <TextInput
             style={{ height: 35, width: 75, borderColor: "gray", borderWidth: 2,  marginLeft: 0,
               marginRight: 20, fontWeight: "bold", textAlign: "center", 
-            }}
-            value={quantityst}
+            }} 
+            value={quantityst}   
+            // returnKeyLabel = {"next"}
+            onChangeText={(text) => setQuantity(parseInt(text))}
+
           ></TextInput>
 
           <View
@@ -274,47 +271,32 @@ const ProductDetails = ({ navigation }, props) => {
             onPress={()=>changeNumberProduct(quantity + 1)}
             />
           </View>
-
-        {/* <View style={styles.quantity_area}>
-          <TouchableOpacity
-            style={styles.border}
-            // onPress={() => setQuantity(quantity - 1)}
-          >
-            <Image
-              style={styles.icon}
-              source={require("../assets/img/minus.png")}
-            ></Image>
-          </TouchableOpacity>
-          <Text style={[styles.quantity_area]}>{quantity}</Text>
-          <TouchableOpacity
-            style={styles.border}
-            // onPress={()=>changeNumberProduct(quantity + 1)}
-          >
-            <Image
-              style={styles.icon}
-              source={require("../assets/img/plus.png")}
-            ></Image>
-          </TouchableOpacity>
-      </View> */}
-
-
+ 
           <View
             style={{ borderRadius: 100, fontSize: 20, fontWeight: "bold", height: 50,
             }}
           >
-            <Button
-              navigation={navigation}
-              color={"orange"} title="Thêm vào giỏ hàng" fontWeight="bold"
-              onPress={() => Alert.alert("Thêm vào giỏ hàng")}
+             <TouchableOpacity
+              style={styles.cart} 
+              // onPress={() => navigation.navigate("CartScreen")}
+              onPress={addToCart}
+            > 
+            <Button 
+              color={"orange"} title="Thêm vào giỏ hàng" fontWeight="bold" 
+                // onPress={() => navigation.navigate("CartScreen" ) } 
+                onPress={addToCart}
             />
+            </TouchableOpacity>
           </View>
+
           <View
             style={{  borderRadius: 100,  fontSize: 20, fontWeight: "bold",  height: 50,  marginLeft: 10,
             }}
           >
             <Button
               backgroundColor="green" color={"green"} borderRadius="50" title="Mua ngay" fontSize={17} fontWeight="bold"
-              onPress={() => Alert.alert("Buy Now")}
+              // onPress={() => Alert.alert("Buy Now")}
+              // onPress={() => Alert.alert(this.state.username)}
             />
           </View>
         </View>
@@ -330,55 +312,31 @@ const ProductDetails = ({ navigation }, props) => {
           <View style={styles.buttonWeight}>
             <Button
               fontWeight="bold" style={styles.buttonInfo} title="Chính sách đổi trả"
-              onPress={() => Alert.alert("Chính sách đổi trả")}
+              onPress={() => Alert.alert("Sản phẩm được giao đến tay khách hàng luôn đúng cam kết,"+
+              "đúng chất lượng niệm yết, luôn được bảo quản trong môi trường lý tưởng,"+
+              "đảm bảo vệ sinh an toàn thực phẩm.")}
             />
           </View>
 
           <View style={styles.buttonWeight}>
             <Button
               fontWeight="bold"  title="Hướng dẫn bảo quản"
-              onPress={() => Alert.alert("Hướng dẫn bảo quản")}
+              onPress={() => Alert.alert("Sản phẩm được giao đến tay khách hàng luôn đúng cam kết, đúng "+
+              "chất lượng niệm yết, luôn được bảo quản trong môi trường lý tưởng, đảm bảo "+
+              "vệ sinh an toàn thực phẩm.")}
             />
           </View>
         </ScrollView>
 
         <Text style={styles.product_info}>
-          <Text style={{ fontWeight: "bold" }}>Đào </Text> (danh pháp khoa học:
-          Prunus persica) là một loài cây được trồng để lấy quả hay hoa. Nó là
-          một loài cây sớm rụng lá, thân gỗ nhỏ, có thể cao tới{" "}
-          <Text style={{ fontWeight: "bold" }}>5–10 m</Text>. Lá của nó có hình
-          mũi mác , dài <Text style={{ fontWeight: "bold" }}>7–15 cm</Text> và
-          rộng <Text style={{ fontWeight: "bold" }}> 2–3 cm</Text>. Hoa nở vào
-          đầu mùa xuân, trước khi ra lá; hoa đơn hay có đôi, đường kính{" "}
-          <Text style={{ fontWeight: "bold" }}>2,5–3 cm</Text>, màu hồng với 5
-          cánh hoa. Quả đào cùng với quả của anh đào, mận, mơ là các loại quả
-          hạch.Quả của nó có một hạt giống to được bao bọc trong một lớp vỏ gỗ
-          cứng (gọi là "hột"), cùi thịt màu vàng hay ánh trắng, có mùi vị thơm
-          ngon và lớp vỏ có lông tơ mềm như nhung.
-        </Text>
-        {/* <Text style={styles.product_info}>
-    <Text style={{fontWeight: "bold"}}>ND Fresh </Text>là hệ thống cửa hàng thực phẩm sạch uy tín nhất ở Việt Nam,
-     chuyên cung cấp thực phẩm sạch tới từng bếp ăn của gia đình bạn.
-
-     <Text style={{fontWeight: "bold"}}>Tầm nhìn:</Text> Được nuôi trồng, chế biến theo phương Bio (sinh học), Organic 
-     (hữu cơ), Eco (sinh thái); cam kết không bán hàng giả, hàng nhái và hàng
-     kém chất lượng. Sản phẩm được giao đến tay khách hàng luôn đúng cam kết,
-     đúng chất lượng niệm yết, luôn được bảo quản trong môi trường lý tưởng, 
-     đảm bảo vệ sinh an toàn thực phẩm.
-
-     <Text style={{fontWeight: "bold"}}>Mục tiêu: </Text>Sản phẩm được giao đến tay khách hàng luôn đúng cam kết, đúng 
-     chất lượng niệm yết, luôn được bảo quản trong môi trường lý tưởng, đảm bảo 
-     vệ sinh an toàn thực phẩm.
-     </Text>
-     <Text style={styles.product_info}>
-       Các giống đào trồng được chia thành hai loại là "hột rời" và "hột dính", 
-       phụ thuộc vào việc hột có dính với cùi thịt hay không; cả hai loại này đều
-        có cùi thịt trắng hay vàng. Quả đào với cùi thịt trắng thông thường có vị
-         rất ngọt và ít vị chua, trong khi loại có cùi thịt màu vàng thông thường
-          có vị chua kèm theo vị ngọt, mặc dù điều này cũng có sự dao động lớn. Cả
-           hai màu thông thường đều có các vệt đỏ trong lớp thịt của chúng. Loại 
-           đào cùi trắng, ít chua là phổ biến nhất 
-     </Text> */}
+          {/* <Text style={{ fontWeight: "bold" }}>Đào </Text>  */}
+          <Text style={{ fontWeight: "bold" }}>Tên sản phẩm : </Text> {product.name_product} {"\n"}
+          <Text style={{ fontWeight: "bold" }}>Loại : </Text> {product.name_unit} {"\n"}
+          <Text style={{ fontWeight: "bold" }}>Giá sản phẩm : </Text> {product.price} {"\n"}  
+          <Text style={{ fontWeight: "bold" }}>Mô tả : </Text> {product.decripstion} {"\n"}
+  
+        </Text> 
+     
 
         <View style={styles.related_product}>
           <Text style={styles.related}>Sản phẩm liên quan</Text>
@@ -419,7 +377,11 @@ const ProductDetails = ({ navigation }, props) => {
       </View>
     </ScrollView>
   );
+
+
 };
+
+ 
 
 const styles = StyleSheet.create({
   header: {

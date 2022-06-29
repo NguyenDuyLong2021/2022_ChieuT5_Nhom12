@@ -15,10 +15,9 @@ const Product = (props) => {
   };
   
   //bước 2
-  const addProduct = () => {
-    props.navigation.navigate("CartItem");
-    dispacth(productAction.addProduct(props.mykey))
-  };
+  // const addToCart= ()=>{
+  //   cartApi.addTocart(props.id__user, {id_product: props.id_product,quantity})
+  // }
   
   return (
     <TouchableOpacity
@@ -39,8 +38,8 @@ const Product = (props) => {
       <Text style={style.name_category}>{props.name_product}</Text>
       <Text style={style.price}>{props.price} VNĐ</Text>
       <TouchableOpacity 
-        style={style.button}
-        onPress={addProduct}
+        style={style.button} 
+        onPress={() => props.navigation.navigate("CartScreen")}
         >
         <Text style={index.style.heading_3}
          >Thêm vào giỏ hàng

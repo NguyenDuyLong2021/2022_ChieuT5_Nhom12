@@ -1,29 +1,31 @@
 import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import available from "../../theme/_availables";
+import available from "../../theme/_availables"; 
+import index from "../../theme"; 
 import React, { useState } from "react";
-import index from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
 
-const CartItem = (props) => {
+const CartItem = ({ navigation }, props) => {
 
-  const [quantity, setQuantity] = useState(props.quantity);
+  const [quantity, setQuantity] = useState( props.quantity); 
+
   //change number product cart item
-  const changeNumberProduct = (quantity) => {
+  function changeNumberProduct(quantity) {
     setQuantity(quantity);
-  };
+  }
   //Delete cart item 
   const deleteProduct=(idProduct)=>{
 
-  }
-  const product = useSelector((state) => state.productReducer.product);
-  console.log("chi tiết sản phẩm - CartItem", product);
+  }  
 
   return (
     <View style={style.cart_item}>
-      <Image resizeMode="cover" style={style.img} source={props.img} />
+      <Image resizeMode="cover" style={style.img} 
+      source={{ uri: "http://192.168.1.9:8080/foodfresh" + product.listImages[0].image }}   
+      />
       <View style={style.info}>
-        <Text style={index.style.heading_name}>{props.name_product}</Text>
-        <Text style={index.style.heading_1}>{props.price} VNĐ</Text>
+        {/* <Text style={index.style.heading_name}>{props.name_product}</Text> */}
+        <Text style={index.style.heading_name}>{product.name_product}</Text>
+        <Text style={index.style.heading_1}>{product.price} VNĐ</Text>
 
         <View style={style.quantity_area}>
           <TouchableOpacity

@@ -182,11 +182,11 @@ const HomeScreen = ({ navigation }) => {
                 // 3
                 <Product
                   navigation={navigation}
-                  mykey={product.id_product}
+                  mykey={product.id_product}s
                   name_product={product.name_product}
-                  price={product.price}
+                  price={product.price} 
                   thumbnail={
-                    "http://192.168.1.10:8080/foodfresh" + product.thumnail
+                    "http://192.168.1.7:8080/foodfresh" + product.thumnail
                   }
                 />
                 
