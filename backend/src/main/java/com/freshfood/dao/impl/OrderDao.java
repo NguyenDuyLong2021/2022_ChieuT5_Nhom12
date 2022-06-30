@@ -14,7 +14,7 @@ import com.freshfood.model.web.OrderItem;
 import com.freshfood.model.web.OrderProduct;
 
 public class OrderDao extends ADao<OrderProduct> implements IOrderDao {
-	
+
 	@Inject
 	private ICartDao cartDao;
 
@@ -27,20 +27,32 @@ public class OrderDao extends ADao<OrderProduct> implements IOrderDao {
 	@Override
 	public int orderProduct(long idUser, OrderProduct orderProduct) {
 		// query using to insert new order into database
-		String sql1 = "insert into order_product (id_user, id_voucher, id_type_payment, date_shipping, time_shipping, fee_shipping)\r\n"
-				+ "values (?, ?, ?, ?, ?,?);";
+		String sql1 = "";
 		Connection connection = getConnection();//
 		PreparedStatement statement = null;//
 		ResultSet resultSet = null;
 		try {
 			connection.setAutoCommit(false);
-			statement = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
-			statement.setLong(1, idUser);
-			statement.setLong(2, orderProduct.getId_voucher());
-			statement.setLong(3, orderProduct.getId_type_payment());
-			statement.setTimestamp(4, orderProduct.getDate_shipping());
-			statement.setTime(5, orderProduct.getTime_shipping());
-			statement.setDouble(6, orderProduct.getFee_shipping());
+			if (orderProduct.getId_voucher()==-1) {
+				sql1 = "insert into order_product (id_user, id_type_payment, date_shipping, time_shipping, fee_shipping)\r\n"
+						+ "values (?, ?, ?, ?,?);";
+				statement = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
+				statement.setLong(1, idUser);
+				statement.setLong(2, orderProduct.getId_type_payment());
+				statement.setTimestamp(3, orderProduct.getDate_shipping());
+				statement.setTime(4, orderProduct.getTime_shipping());
+				statement.setDouble(5, orderProduct.getFee_shipping());
+			} else {
+				sql1 = "insert into order_product (id_user, id_voucher, id_type_payment, date_shipping, time_shipping, fee_shipping)\r\n"
+						+ "values (?, ?, ?, ?, ?,?);";
+				statement = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
+				statement.setLong(1, idUser);
+				statement.setLong(2, orderProduct.getId_voucher());
+				statement.setLong(3, orderProduct.getId_type_payment());
+				statement.setTimestamp(4, orderProduct.getDate_shipping());
+				statement.setTime(5, orderProduct.getTime_shipping());
+				statement.setDouble(6, orderProduct.getFee_shipping());
+			}
 			// row effected bigger than 0 then executing next SQL
 			if (statement.executeUpdate() > 0) {
 				resultSet = statement.getGeneratedKeys();
@@ -54,7 +66,7 @@ public class OrderDao extends ADao<OrderProduct> implements IOrderDao {
 				statement = connection.prepareStatement(sql2);
 				for (OrderItem oi : orderProduct.getOrderItems()) {
 					statement.setLong(1, idOrder);
-					statement.setLong(2,oi.getId_product());
+					statement.setLong(2, oi.getId_product());
 					statement.setInt(3, oi.getQuantity());
 					statement.addBatch();
 				}

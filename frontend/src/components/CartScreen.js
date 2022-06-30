@@ -9,15 +9,14 @@ import {
   ToastAndroid,
 } from "react-native";
 import { useDispatch } from "react-redux";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import CartItem from "./cart_components/CartItem";
 import available from "../theme/_availables";
 import index from "../theme";
 import LoadingView from "./common_components/LoadingView";
-import cartAPI from "../api/cartAPI";
+import cartAPI from "../api/cartApi";
 import InputComponent from "./common_components/InputComponent";
-import * as cartActions from "../actions/cartAction";
-import * as userAction from "../actions/userActions";
+import * as cartActions from "../action/cartAction";
 const CartScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const max = 200;
@@ -62,6 +61,25 @@ const CartScreen = ({ navigation }) => {
       })
       .catch((err) => console.log(err.reponse));
   };
+  //computed total price of cart
+  const totalPrice = (products) => {
+    let total = 0;
+    if (products !== undefined) {
+      products.forEach((element) => {
+        total += element.quantity * element.price;
+      });
+    }
+    return total;
+  };
+  // const computedTotalPrice = useMemo(
+  //   () => {
+  //     console.log("tt")
+  //     if(cart.listCartItem!==null){
+  //       totalPrice(cart.listCartItem)
+  //     }
+  //   },
+  //   [cart]
+  // );
   //render cart item
   const displayCartDetail = () => {
     if (cart === null) {
@@ -114,9 +132,10 @@ const CartScreen = ({ navigation }) => {
               onChangeText={setVoucher}
               placeholderTextColor={available.blue}
               placeholder="Nhập voucher tại đây"
+              showSoftInputOnFocus={true}
             />
             <Text style={[index.style.color_text_2, index.style.al_text_right]}>
-              Tổng tiền tạm tính: 40000 VNĐ
+              Tổng tiền tạm tính: {totalPrice(cart.listCartItem)} VNĐ
             </Text>
             <TouchableOpacity
               style={index.style.button_solid}
@@ -144,6 +163,7 @@ const CartScreen = ({ navigation }) => {
             cartActions.dispatchIdVoucher({
               id_voucher: q.data.result.id_voucher,
               codeVoucher: voucher,
+              discount: q.data.result.discount,
             })
           );
         } else setStatusCheck("failed");
@@ -153,7 +173,15 @@ const CartScreen = ({ navigation }) => {
   //save step order
   const saveStepOrder = () => {
     navigation.navigate("CofirmOrderScreen");
-
+    dispatch(cartActions.dispatchTotalPrice(totalPrice(cart.listCartItem)));
+    dispatch(
+      cartActions.dispatchListCartItem(
+        cart.listCartItem.map((item) => ({
+          id_product: item.id_product,
+          quantity: item.quantity,
+        }))
+      )
+    );
     //code save step order here
   };
   return displayCartDetail();

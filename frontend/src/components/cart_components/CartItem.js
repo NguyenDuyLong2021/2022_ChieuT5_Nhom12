@@ -9,7 +9,7 @@ import {
 import available from "../../theme/_availables";
 import React, { useEffect, useState } from "react";
 import index from "../../theme";
-import cartAPIs from "../../api/cartAPI";
+import cartAPIs from "../../api/cartApi";
 const CartItem = (props) => {
   const [quantity, setQuantity] = useState(props.quantity);
   useEffect(() => {
@@ -33,6 +33,7 @@ const CartItem = (props) => {
     <View key={props.id} style={style.cart_item}>
       <Image resizeMode="cover" style={style.img} source={{ uri: props.img }} />
       <View style={style.info}>
+        {/* <Text style={index.style.heading_name}>{props.name_product}</Text> */}
         <Text style={index.style.heading_name}>{props.name_product}</Text>
         <Text style={index.style.heading_1}>{props.price} VNĐ</Text>
 
@@ -57,6 +58,7 @@ const CartItem = (props) => {
             ></Image>
           </TouchableOpacity>
         </View>
+
       </View>
       <View style={style.options}>
         <Image

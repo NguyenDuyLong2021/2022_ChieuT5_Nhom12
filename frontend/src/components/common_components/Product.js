@@ -2,25 +2,47 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import available from "../../theme/_availables";
 import index from "../../theme/index";
 import React from "react";
+import productsAPI from "../../api/productsAPI";
+import * as productAction from "../../action/productAction";
+import {useDispatch} from "react-redux"
+
 const Product = (props) => {
+  const dispacth = useDispatch();
+  //bước 2
+  const getDetailProduct = () => {
+    props.navigation.navigate("ProductDetail");
+    dispacth(productAction.loadProductDetail(props.mykey))
+  };
+  
+  //bước 2
+  // const addToCart= ()=>{
+  //   cartApi.addTocart(props.id__user, {id_product: props.id_product,quantity})
+  // }
+  
   return (
-    <TouchableOpacity key={props.key}
+    <TouchableOpacity key={props.mykey}
       style={style.product}
       // Do chỗ này là component con nền cần truyền navigatio từ  màn hình cha vào thông qua props
       // ở đây chúng ta truyền từ màn hình cha là home
-      onPress={() => props.navigation.navigate("ProductDetail")}
+      onPress={getDetailProduct} 
     >
       <View style={style.item_category}>
         <Image
           resizeMode="contain"
           style={style.img_product}
-          source={{uri: props.thumbnail}}
+          source={{ uri: props.thumbnail }}
         />
-      </View>
+        
+      </View>  
       <Text style={style.name_category}>{props.name_product}</Text>
       <Text style={style.price}>{props.price} VNĐ</Text>
-      <TouchableOpacity style={style.button}>
-        <Text style={index.style.heading_3}>Thêm vào giỏ hàng</Text>
+      <TouchableOpacity 
+        style={style.button} 
+        onPress={() => props.navigation.navigate("CartScreen")}
+        >
+        <Text style={index.style.heading_3}
+         >Thêm vào giỏ hàng
+        </Text>
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -39,7 +61,7 @@ const style = StyleSheet.create({
     height: 105,
     borderTopLeftRadius: available.b_radius,
     borderTopRightRadius: available.b_radius,
-  }, 
+  },
   name_category: {
     textAlign: "center",
     color: available.blue,

@@ -18,9 +18,10 @@ import index from "../theme/index";
 import Product from "./common_components/Product";
 import Product1 from "./common_components/Product1";
 import productsAPI from "../api/productsAPI";
-import * as userActions from "../actions/userActions"
+import * as userActions from "../action/userActions"
 
 const HomeScreen = ({ navigation }) => {
+  // 2
   const [l, sl] = useState(null);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch()
@@ -31,6 +32,7 @@ const HomeScreen = ({ navigation }) => {
     });
     dispatch(userActions.loadUser(1))
   }, []);
+  
   const array = [
     { id: 1, img: require("../assets/img/img.png") },
     { id: 2, img: require("../assets/img/side_demo_2.jpg") },
@@ -181,19 +183,22 @@ const HomeScreen = ({ navigation }) => {
           </ScrollView>
           <Text style={style.relatedNew}>Sản phẩm mới</Text>
           <ScrollView horizontal={true}>
+        
             <View style={index.style.flex_wrap}>
               {l.datas.map((product) => (
                 // navigation ={naviagation}
                 //khi vao trong chúng ta chỉ cần props.navigatin là lấy được navigation
+                // 3
                 <Product
                   navigation={navigation}
-                  key={product.id_product}
+                  mykey={product.id_product}
                   name_product={product.name_product}
-                  price={product.price}
+                  price={product.price} 
                   thumbnail={
                     "http://172.16.2.207:8080/foodfresh" + product.thumnail
                   }
                 />
+                
               ))}
             </View>
           </ScrollView>

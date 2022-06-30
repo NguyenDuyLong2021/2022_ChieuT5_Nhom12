@@ -4,5 +4,10 @@ const productsAPI = {
   getProducts: () => {
     return axiosClient.get("/products");
   },
-};
+  //bước 1
+  getDetailProduct:(id)=>{
+    // http://localhost:8080/foodfresh/product?id_product=1
+    return axiosClient.get(`/product?id_product=${id}`)
+  }, 
+}; 
 export default productsAPI;

@@ -16,7 +16,7 @@ public class PromotionDao extends ADao<Promotion> implements IPromotionDao {
 	 */
 	@Override
 	public Voucher isUsed(long id_user, String code_voucher) {
-		String sql = "select v.id_voucher, uv.available from user_voucher uv left join voucher v "
+		String sql = "select v.id_voucher, uv.available, v.discount from user_voucher uv left join voucher v "
 				+ "on uv.id_voucher=v.id_voucher where uv.id_user=? and v.code_voucher=?;";
 		Connection connection = getConnection();
 		ResultSet resultSet = null;
@@ -30,6 +30,7 @@ public class PromotionDao extends ADao<Promotion> implements IPromotionDao {
 			while (resultSet.next()) {
 				v.setId_voucher(resultSet.getLong("id_voucher"));
 				v.setAvailable(resultSet.getBoolean("available"));
+				v.setDiscount(resultSet.getDouble("discount"));
 			}
 			return v;
 		} catch (SQLException e) {
