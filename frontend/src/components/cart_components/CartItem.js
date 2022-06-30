@@ -9,7 +9,7 @@ import {
 import available from "../../theme/_availables";
 import React, { useEffect, useState } from "react";
 import index from "../../theme";
-import cartAPIs from "../../api/cartAPI";
+import cartAPIs from "../../api/cartApi";
 const CartItem = (props) => {
   const [quantity, setQuantity] = useState(props.quantity);
   useEffect(() => {

@@ -118,8 +118,8 @@ const HomeScreen = ({ navigation }) => {
       img: require("../assets/img/GraeconNominati.png"),
     },
   ];
-  //get product
-  const getProducts = () => {
+  //render cart item
+  const renderCartItem = () => {
     if (loading) {
       return (
         <View>
@@ -249,7 +249,7 @@ const HomeScreen = ({ navigation }) => {
   };
   //click cart
   const clickCart = () => navigation.navigate("CartScreen");
-  return getProducts();
+  return renderCartItem();
 };
 const style = StyleSheet.create({
   container: {
