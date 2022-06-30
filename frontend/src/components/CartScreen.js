@@ -14,7 +14,7 @@ import CartItem from "./cart_components/CartItem";
 import available from "../theme/_availables";
 import index from "../theme";
 import LoadingView from "./common_components/LoadingView";
-import cartAPI from "../api/cartAPI";
+import cartAPI from "../api/cartApi";
 import InputComponent from "./common_components/InputComponent";
 import * as cartActions from "../action/cartAction";
 const CartScreen = ({ navigation }) => {

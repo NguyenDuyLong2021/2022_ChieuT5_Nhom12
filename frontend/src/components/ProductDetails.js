@@ -18,7 +18,7 @@ import SearchComponent from "./common_components/SearchComponent";
 import Product1 from "./common_components/Product1";
 import { useDispatch, useSelector } from "react-redux";
 import * as productAction from "../action/productAction";
-import cartApi from "../api/cartAPI";
+import cartApi from "../api/cartApi";
 // import Product from "./common_components/Product";
 
 
@@ -148,7 +148,7 @@ const ProductDetails = ({ navigation },{ props }) => {
         </Text>
 
         <ScrollView horizontal={true}>
-          { product!==null
+          { product!==undefined&& product!==null
             ?product.listImages.map((image) => (
                 <Image
                   source={{ uri: "http://172.16.2.207:8080/foodfresh" + image.image }}

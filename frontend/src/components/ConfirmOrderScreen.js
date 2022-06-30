@@ -10,7 +10,7 @@ import { Calendar } from "react-native-calendars";
 import RadioForm from "react-native-simple-radio-button";
 import PopUp from "./common_components/PopUp";
 import TimePickerC from "./common_components/TimePickerC";
-import cartApi from "../api/cartAPI";
+import cartApi from "../api/cartApi";
 var radio_props = [
   { label: "Thanh toán tiền mặt", value: 0 },
   { label: "Thanh toán online", value: 1 },

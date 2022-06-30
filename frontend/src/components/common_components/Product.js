@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import productsAPI from "../../api/productsAPI";
 import * as productAction from "../../action/productAction";
 import {useDispatch} from "react-redux" 
-import cartApi from "../../api/cartAPI";
+import cartApi from "../../api/cartApi";
 
 
 const Product = (props) => {

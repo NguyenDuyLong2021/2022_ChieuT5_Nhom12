@@ -119,7 +119,7 @@ const HomeScreen = ({ navigation }) => {
     },
   ];
   //get product
-  const getProducts = () => {
+  const renderCartItem = () => {
     if (loading) {
       return (
         <View>
@@ -249,7 +249,7 @@ const HomeScreen = ({ navigation }) => {
   };
   //click cart
   const clickCart = () => navigation.navigate("CartScreen");
-  return getProducts();
+  return renderCartItem();
 };
 const style = StyleSheet.create({
   container: {
