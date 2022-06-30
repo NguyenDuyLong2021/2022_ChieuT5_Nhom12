@@ -17,10 +17,6 @@ public interface IProductService {
 	 * out put: a product
 	 */
 	Product getDetailProduct(long idProduct);
-	/*
-	 * search product
-	 * input: a string
-	 * output: a list product
-	 */
+// phương thuc tim kiem san pham dua vao tu khoa
 	List<Product> search(String key);
 }
