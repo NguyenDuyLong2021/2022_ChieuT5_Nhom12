@@ -33,4 +33,14 @@ public class ProductService implements IProductService {
 		return productDao.getDetailProduct(idProduct);
 	}
 
+	/*
+	 * search product
+	 * input: a string
+	 * output: a list product
+	 */
+	@Override
+	public List<Product> search(String key) {
+		return productDao.search(key);
+	}
+
 }

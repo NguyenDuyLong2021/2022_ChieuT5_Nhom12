@@ -7,6 +7,8 @@ public class Voucher {
 	private Long id_promotion;// id promotion
 	private String code_voucher;// code voucher
 	private Timestamp time_out;// time out
+	private Boolean available;
+	private Double discount;
 
 	public Long getId_voucher() {
 		return id_voucher;
@@ -39,4 +41,21 @@ public class Voucher {
 	public void setTime_out(Timestamp time_out) {
 		this.time_out = time_out;
 	}
+
+	public Boolean getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(Boolean available) {
+		this.available = available;
+	}
+
+	public Double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+	
 }

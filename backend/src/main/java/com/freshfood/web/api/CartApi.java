@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freshfood.model.web.Cart;
 import com.freshfood.model.web.CartItem;
+import com.freshfood.model.web.Voucher;
 import com.freshfood.service.ICartService;
 import com.freshfood.service.IPromotionService;
 import com.freshfood.utils.HttpUtil;
@@ -69,11 +70,11 @@ public class CartApi extends HttpServlet {
 		case "/foodfresh/checkVoucher": {
 			long idUser = Long.parseLong(req.getParameter("id_user"));
 			String codeVoucher = req.getParameter("codeVoucher");
-			Boolean result = promotionService.checkValidateVoucher(idUser, codeVoucher);
-			ObjectReponse<Boolean> rpsCheck = new ObjectReponse<Boolean>();
+			Voucher v = promotionService.checkValidateVoucher(idUser, codeVoucher);
+			ObjectReponse<Voucher> rpsCheck = new ObjectReponse<Voucher>();
 			rpsCheck.setStatusCode(200);
 			rpsCheck.setMessage("Success");
-			rpsCheck.setResult(result);
+			rpsCheck.setResult(v);
 			mapper.writeValue(resp.getOutputStream(), rpsCheck);
 		}
 		default:

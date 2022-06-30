@@ -15,5 +15,6 @@ export const loadProductDetail = (idProduct) => {
 };   
 //action để dispatch data vào store redux
 export const dispatchProduct = (product) => {
+  console.log(product,"nóng hổi")
   return { type: "DISPATCH_PRODUCT", product };
 };

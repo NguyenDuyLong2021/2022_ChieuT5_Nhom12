@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import productsAPI from "../../api/productsAPI";
 import * as productAction from "../../action/productAction";
 import {useDispatch} from "react-redux" 
-import cartApi from "../../api/cartApi";
+import cartApi from "../../api/cartAPI";
 
 
 const Product = (props) => {
@@ -31,8 +31,7 @@ const Product = (props) => {
   }  
 
   return (
-    <TouchableOpacity
-      key={props.mykey}
+    <TouchableOpacity key={props.mykey}
       style={style.product}
       // Do chỗ này là component con nền cần truyền navigatio từ  màn hình cha vào thông qua props
       // ở đây chúng ta truyền từ màn hình cha là home
@@ -80,7 +79,7 @@ const style = StyleSheet.create({
     color: available.blue,
     fontWeight: available.fw_1,
     fontSize: 20,
-    backgroundColor: "while",
+    backgroundColor:available.white
   },
   price: {
     textAlign: "center",

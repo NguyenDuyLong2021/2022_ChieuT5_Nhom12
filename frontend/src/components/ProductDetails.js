@@ -18,7 +18,7 @@ import SearchComponent from "./common_components/SearchComponent";
 import Product1 from "./common_components/Product1";
 import { useDispatch, useSelector } from "react-redux";
 import * as productAction from "../action/productAction";
-import cartApi from "../api/cartApi";
+import cartApi from "../api/cartAPI";
 // import Product from "./common_components/Product";
 
 
@@ -45,7 +45,6 @@ const ProductDetails = ({ navigation },{ props }) => {
   };
 
   const product = useSelector((state) => state.productReducer.product); 
-  // console.log("chi tiết sản phẩm - ProductDetails", product);
 
   const addToCart= ()=>{    
     // navigation.navigate("CartScreen");  
@@ -149,10 +148,10 @@ const ProductDetails = ({ navigation },{ props }) => {
         </Text>
 
         <ScrollView horizontal={true}>
-          { product !== null
+          { product!==null
             ?product.listImages.map((image) => (
                 <Image
-                  source={{ uri: "http://192.168.1.9:8080/foodfresh" + image.image }}
+                  source={{ uri: "http://172.16.2.207:8080/foodfresh" + image.image }}
                   // source={require(product)}
                   style={styles.img_dig}
                 />
@@ -174,7 +173,7 @@ const ProductDetails = ({ navigation },{ props }) => {
           {product !== null
             ?product.listImages.map((image) => (
                 <Image
-                  source={{ uri: "http://192.168.1.9:8080/foodfresh" + image.image }}
+                  source={{ uri: "http://172.16.2.207:8080/foodfresh" + image.image }}
                   // source={require(product)}
                   style={styles.imgIcon_dig}
                 />

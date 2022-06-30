@@ -17,7 +17,7 @@ import com.freshfood.model.web.User;
 import com.freshfood.service.IProductService;
 import com.freshfood.utils.ObjectReponse;
 
-@WebServlet(urlPatterns = { "/products", "/product" })
+@WebServlet(urlPatterns = { "/products", "/product", "/search" })
 public class ProductApi extends HttpServlet {
 
 	/**
@@ -51,6 +51,16 @@ public class ProductApi extends HttpServlet {
 			reponse.setStatusCode(200);
 			reponse.setMessage("Success");
 			reponse.setModel(product);
+			mapper.writeValue(resp.getOutputStream(), reponse);
+			break;
+		}
+		case "/foodfresh/search": {
+			String key = req.getParameter("key");
+			List<Product> products1 = productService.search(key);
+			ObjectReponse<Product> reponse = new ObjectReponse<Product>();
+			reponse.setStatusCode(200);
+			reponse.setMessage("Success");
+			reponse.setDatas(products1);
 			mapper.writeValue(resp.getOutputStream(), reponse);
 			break;
 		}

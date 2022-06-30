@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import {useDispatch} from "react-redux"
 import layout from "../theme/layout";
 import available from "../theme/_availables";
 import SearchComponent from "./common_components/SearchComponent";
@@ -17,45 +18,54 @@ import index from "../theme/index";
 import Product from "./common_components/Product";
 import Product1 from "./common_components/Product1";
 import productsAPI from "../api/productsAPI";
+import * as userActions from "../action/userActions"
 
 const HomeScreen = ({ navigation }) => {
   // 2
   const [l, sl] = useState(null);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch()
   useEffect(() => {
     productsAPI.getProducts().then((q) => {
       sl(q.data);
-      setLoading(false)
+      setLoading(false);
     });
+    dispatch(userActions.loadUser(1))
   }, []);
   
   
   const array = [
-    { img: require("../assets/img/img.png") },
-    { img: require("../assets/img/side_demo_2.jpg") },
+    { id: 1, img: require("../assets/img/img.png") },
+    { id: 2, img: require("../assets/img/side_demo_2.jpg") },
   ];
   const array2 = [
     {
+      id: 1,
       ic: "Hải sản",
       img: require("../assets/img/fish.png"),
     },
     {
+      id: 2,
       ic: "Thịt",
       img: require("../assets/img/meat.png"),
     },
     {
+      id: 3,
       ic: "Rau",
       img: require("../assets/img/spinach.png"),
     },
     {
+      id: 4,
       ic: "Đồ uống",
       img: require("../assets/img/liquor.png"),
     },
     {
+      id: 5,
       ic: "Gia vị",
       img: require("../assets/img/spice.png"),
     },
     {
+      id: 6,
       ic: "Gạo",
       img: require("../assets/img/rice.png"),
     },
@@ -149,8 +159,8 @@ const HomeScreen = ({ navigation }) => {
             style={style.scroll_view}
             showsHorizontalScrollIndicator={false}
           >
-            {array.map((i, id) => (
-              <ItemSlide myKey={id} img={i.img} />
+            {array.map((i) => (
+              <ItemSlide myKey={i.id} img={i.img} />
             ))}
           </ScrollView>
 
@@ -168,26 +178,25 @@ const HomeScreen = ({ navigation }) => {
             style={style.scroll_view}
             showsHorizontalScrollIndicator={false}
           >
-            {array2.map((i, id) => (
-              <ItemCategory id={id} name_ic={i.ic} ic_source={i.img} />
+            {array2.map((i) => (
+              <ItemCategory key={i.id} name_ic={i.ic} ic_source={i.img} />
             ))}
           </ScrollView>
           <Text style={style.relatedNew}>Sản phẩm mới</Text>
           <ScrollView horizontal={true}>
         
             <View style={index.style.flex_wrap}>
-              
-              {l.datas.map((product, id) => (
+              {l.datas.map((product) => (
                 // navigation ={naviagation}
                 //khi vao trong chúng ta chỉ cần props.navigatin là lấy được navigation
                 // 3
                 <Product
                   navigation={navigation}
-                  mykey={product.id_product}s
+                  mykey={product.id_product}
                   name_product={product.name_product}
                   price={product.price} 
                   thumbnail={
-                    "http://192.168.1.7:8080/foodfresh" + product.thumnail
+                    "http://172.16.2.207:8080/foodfresh" + product.thumnail
                   }
                 />
                 
@@ -234,9 +243,6 @@ const HomeScreen = ({ navigation }) => {
               ))}
             </ScrollView>
           </View>
-
-          <Text ref={null}></Text>
-          <Text ref={null}></Text>
         </ScrollView>
       );
     }
@@ -294,7 +300,7 @@ const style = StyleSheet.create({
     color: "black",
     fontWeight: available.fw_1,
     fontSize: 25,
-    backgroundColor: "while",
+    backgroundColor: available.white,
   },
   price: {
     textAlign: "center",

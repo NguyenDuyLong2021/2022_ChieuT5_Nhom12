@@ -4,7 +4,7 @@ import index from "../../theme/index";
 import React from "react";
 const ItemCategory = (props) => {
   return (
-    <TouchableOpacity key={props.id}>
+    <TouchableOpacity key={props.key}>
       <View style={style.item_category}>
         <Image
           style={style.img_category}

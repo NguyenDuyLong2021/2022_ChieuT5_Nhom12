@@ -59,14 +59,15 @@ CREATE TABLE category (
 CREATE TABLE promotion (
     id_promotion bigint PRIMARY KEY AUTO_INCREMENT,
     name_promotion VARCHAR(255),
-    create_date timestamp NOT NULL,
-    end_date timestamp NOT NULL,
+    create_date timestamp default now(),
+    end_date timestamp,
     modified_date timestamp 
 );
 CREATE TABLE voucher (
     id_voucher bigint PRIMARY KEY AUTO_INCREMENT,
     id_promotion bigint NOT NULL,
     code_voucher CHAR(255) NOT NULL,
+    discount int default 0,
     time_out TIME NOT NULL
 );
 CREATE TABLE order_product (
@@ -77,7 +78,7 @@ CREATE TABLE order_product (
     date_shipping timestamp NOT NULL,
     time_shipping TIME NOT NULL,
     fee_shipping DOUBLE NOT NULL,
-    create_date timestamp NOT NULL,
+    create_date timestamp default now(),
     modified_date timestamp
 );
 CREATE TABLE order_item (

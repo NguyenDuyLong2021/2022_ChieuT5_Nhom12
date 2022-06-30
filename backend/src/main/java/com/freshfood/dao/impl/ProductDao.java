@@ -90,4 +90,36 @@ public class ProductDao extends ADao<Product> implements IProductDao {
 		}
 	}
 
+	/*
+	 * search product
+	 * input: a string
+	 * output: a list product
+	 */
+	@Override
+	public List<Product> search(String key) {
+		String sql = "SELECT p.id_product, p.name_product, p.price, p.thumnail FROM product p WHERE name_product LIKE ? LIMIT 20";
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+		ResultSet resultset = null;
+		try {
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, key);
+			resultset = statement.executeQuery();
+			List<Product> products = new ArrayList<Product>();
+			while (resultset.next()) {
+				Product product = new Product();
+				product.setId_product(resultset.getLong("id_product"));
+				product.setName_product(resultset.getString("name_product"));
+				product.setPrice(resultset.getDouble("price"));
+				product.setThumnail(resultset.getString("thumnail"));
+				products.add(product);
+			}
+			return products;
+		} catch (SQLException e) {
+			return null;
+		} finally {
+			close(connection, statement, resultset);
+		}
+	}
+
 }
