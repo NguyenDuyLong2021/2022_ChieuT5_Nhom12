@@ -27,4 +27,15 @@ public interface ICartService {
 	 * output: a message
 	 */
 	String addToCart(long idOrderItem,long idProduct, int quantity);
+	
+	/*
+	 * boolean product
+	 * message
+	 */ 
+	String booleanProduct (long idProduct);
+	/*
+	 * getQuantity
+	 * message
+	 */ 
+	int getQuantity (long idProduct);
 }

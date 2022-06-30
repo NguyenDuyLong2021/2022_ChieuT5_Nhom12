@@ -1,10 +1,12 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import available from "../../theme/_availables";
 import index from "../../theme/index";
-import React from "react";
+import React, { useState } from "react";
 import productsAPI from "../../api/productsAPI";
 import * as productAction from "../../action/productAction";
-import {useDispatch} from "react-redux"
+import {useDispatch} from "react-redux" 
+import cartApi from "../../api/cartAPI";
+
 
 const Product = (props) => {
   const dispacth = useDispatch();
@@ -13,12 +15,21 @@ const Product = (props) => {
     props.navigation.navigate("ProductDetail");
     dispacth(productAction.loadProductDetail(props.mykey))
   };
-  
-  //bước 2
-  // const addToCart= ()=>{
-  //   cartApi.addTocart(props.id__user, {id_product: props.id_product,quantity})
-  // }
-  
+ 
+  const quantity = 1 ;
+  const addToCart= ()=>{    
+    // navigation.navigate("CartScreen");  
+    if (cartApi.booleanProduct(props.mykey)){
+       cartApi.updateCart({id_product: props.mykey,quantity});
+      //  Alert.alert("Update success");
+       console.log("Update success"); 
+    }else {
+      cartApi.addToCart(1, {id_product: props.mykey,quantity});
+      // Alert.alert("Add success")
+      console.log("Add success"); 
+    } 
+  }  
+
   return (
     <TouchableOpacity key={props.mykey}
       style={style.product}
@@ -38,7 +49,8 @@ const Product = (props) => {
       <Text style={style.price}>{props.price} VNĐ</Text>
       <TouchableOpacity 
         style={style.button} 
-        onPress={() => props.navigation.navigate("CartScreen")}
+        // onPress={() => props.navigation.navigate("CartScreen")}
+        onPress={addToCart}
         >
         <Text style={index.style.heading_3}
          >Thêm vào giỏ hàng

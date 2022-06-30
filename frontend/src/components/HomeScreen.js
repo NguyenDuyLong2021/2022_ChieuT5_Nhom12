@@ -33,6 +33,7 @@ const HomeScreen = ({ navigation }) => {
     dispatch(userActions.loadUser(1))
   }, []);
   
+  
   const array = [
     { id: 1, img: require("../assets/img/img.png") },
     { id: 2, img: require("../assets/img/side_demo_2.jpg") },

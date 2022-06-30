@@ -17,4 +17,10 @@ public interface IProductDao {
 	 * out put: a product
 	 */
 	Product getDetailProduct(long idProduct);
+	/*
+	 * search product
+	 * input: a string
+	 * output: a list product
+	 */
+	List<Product> search(String key);
 }

@@ -18,8 +18,9 @@ import SearchComponent from "./common_components/SearchComponent";
 import Product1 from "./common_components/Product1";
 import { useDispatch, useSelector } from "react-redux";
 import * as productAction from "../action/productAction";
-import cartApi from "../api/cartApi";
+import cartApi from "../api/cartAPI";
 // import Product from "./common_components/Product";
+
 
 const ProductDetails = ({ navigation },{ props }) => {
 
@@ -44,11 +45,18 @@ const ProductDetails = ({ navigation },{ props }) => {
   };
 
   const product = useSelector((state) => state.productReducer.product); 
-  console.log("chi tiết sản phẩm - ProductDetails", product);
 
   const addToCart= ()=>{    
     // navigation.navigate("CartScreen");  
-    cartApi.addToCart(1, {id_product: product.id_product,quantity}) 
+    if (cartApi.booleanProduct(product.id_product)){
+       cartApi.updateCart({id_product: product.id_product,quantity});
+      //  Alert.alert("Update success");
+       console.log("Update success"); 
+    }else {
+      cartApi.addToCart(1, {id_product: product.id_product,quantity});
+      // Alert.alert("Add success")
+      console.log("Add success"); 
+    } 
   }   
 
    
@@ -140,7 +148,7 @@ const ProductDetails = ({ navigation },{ props }) => {
         </Text>
 
         <ScrollView horizontal={true}>
-          {product !== null || product===undefined
+          { product!==null
             ?product.listImages.map((image) => (
                 <Image
                   source={{ uri: "http://172.16.2.207:8080/foodfresh" + image.image }}
@@ -208,35 +216,27 @@ const ProductDetails = ({ navigation },{ props }) => {
           {product.decripstion} 
 
         </Text>
-        <Text style={styles.weight}>Trọng lượng</Text>
+        {/* <Text style={styles.weight}>Trọng lượng</Text>
 
         <ScrollView style={{ flex: 1, marginLeft: 20 }} horizontal={true}>
           <View style={styles.buttonWeight}>
-            <Button
-              fontWeight="bold"
-              title="1Kg"
-              onPress={() => Alert.alert("1Kg")}
+            <Button fontWeight="bold" title="1Kg" onPress={() => Alert.alert("1Kg")}
             />
           </View>
 
           <View style={styles.buttonWeight}>
             <Button
-              fontWeight="bold"
-              title="2Kg"
-              onPress={() => Alert.alert("2Kg")}
+              fontWeight="bold" title="2Kg" onPress={() => Alert.alert("2Kg")}
             />
           </View>
 
           <View style={styles.buttonWeight}>
-            <Button
-              fontWeight="bold"
-              title="3Kg"
-              onPress={() => Alert.alert("3Kg")}
+            <Button fontWeight="bold" title="3Kg"  onPress={() => Alert.alert("3Kg")}
             />
           </View>
-        </ScrollView>
+        </ScrollView> */}
 
-        <Text style={styles.weight}>Số lượng: :</Text>
+        <Text style={styles.weight}>Số lượng</Text>
         <View
           style={{
             flex: 0.03, flexDirection: "row",  marginLeft: 20,  marginRight: 20,
@@ -277,8 +277,7 @@ const ProductDetails = ({ navigation },{ props }) => {
             }}
           >
              <TouchableOpacity
-              style={styles.cart} 
-              // onPress={() => navigation.navigate("CartScreen")}
+              style={styles.cart}  
               onPress={addToCart}
             > 
             <Button 

@@ -18,17 +18,29 @@ public interface ICartDao {
 	 */
 	int deleteCartItem(long id_cart_item);
 	/*
+	 * getQuantity (idProduct)
+	 * effect
+	 */ 
+	int getQuantity (long idProduct);
+	/*
 	 * edit quantity of cart item from cart
 	 * input: id_cart_item, quantity product
 	 * ouput: int row effect
 	 */
-	int updateCartItem(long id_cart_item, int quantity);
+	int updateCartItem(long idProduct, int quantity); 
+	/*
+	 * booleanProduct (idProduct)
+	 * effect
+	 */ 
+	boolean booleanProduct (long idProduct);
+	 
 	/*
 	 * add new product to cart
 	 * input: id cart, id product, quantity
 	 * output:  int row effect
 	 */
 	int addToCart(long idCart, long idProduct, int quantity);
+	
 	/*
 	 * clear all item in cart
 	 * input: id user(idc cart)

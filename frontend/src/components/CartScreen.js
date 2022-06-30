@@ -14,7 +14,7 @@ import CartItem from "./cart_components/CartItem";
 import available from "../theme/_availables";
 import index from "../theme";
 import LoadingView from "./common_components/LoadingView";
-import cartAPI from "../api/cartApi";
+import cartAPI from "../api/cartAPI";
 import InputComponent from "./common_components/InputComponent";
 import * as cartActions from "../action/cartAction";
 const CartScreen = ({ navigation }) => {
@@ -25,6 +25,48 @@ const CartScreen = ({ navigation }) => {
   const [cart, setCart] = useState(null); //state save data cart
   const [voucher, setVoucher] = useState("");
   const [statusCheck, setStatusCheck] = useState("loading");
+
+  // const [quantity, setQuantity] = useState(props.quantity); 
+
+  const array = [
+    {
+      name_product: "Đậu hà lan",
+      price: "40000",
+      img: require("../assets/img/TantasDetracto.png"),
+      quantity: 6,
+    },
+    // {
+    //   name_product: "Chanh vàng",
+    //   price: "115000",
+    //   img: require("../assets/img/NecinEssentelo.png"),
+    //   quantity: 3,
+    // },
+    // {
+    //   name_product: "Gạo",
+    //   price: "67500",
+    //   img: require("../assets/img/VerantInterpretaris.png"),
+    //   quantity: 1,
+    // },
+    // {
+    //   name_product: "Bơ",
+    //   price: "90000",
+    //   img: require("../assets/img/ZalorumAliquam.png"),
+    //   quantity: 8,
+    // },
+    // {
+    //   name_product: "Cam",
+    //   price: "40000",
+    //   img: require("../assets/img_ProductDetails/orange.png"),
+    //   quantity: 8,
+    // },
+    // {
+    //   name_product: "Đào",
+    //   price: "40000",
+    //   img: require("../assets/img_ProductDetails/dig.png"),
+    //   quantity: 7,
+    // },
+  ];
+  // const [cart, setCart] = useState(navigation);
   const [pointY, setPointY] = useState(new Animated.Value(200)); // point y of pop up, init is 0
   const [sizeContentScroll, setSizeContentScroll] = useState(0);
   const transformY = pointY.interpolate({
@@ -102,7 +144,7 @@ const CartScreen = ({ navigation }) => {
             {cart.listCartItem.map((i, id) => (
               <CartItem
                 id={id}
-                id_cart_item={i.id_cart_item}
+                id_product={i.id_product}
                 deleteCart={deleteCartItem}
                 img={"http://172.16.2.207:8080/foodfresh" + i.thumnail}
                 price={i.price}

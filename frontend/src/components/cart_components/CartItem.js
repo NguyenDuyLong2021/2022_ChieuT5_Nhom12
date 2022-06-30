@@ -9,7 +9,7 @@ import {
 import available from "../../theme/_availables";
 import React, { useEffect, useState } from "react";
 import index from "../../theme";
-import cartAPIs from "../../api/cartApi";
+import cartAPIs from "../../api/cartAPI";
 const CartItem = (props) => {
   const [quantity, setQuantity] = useState(props.quantity);
   useEffect(() => {
@@ -19,7 +19,7 @@ const CartItem = (props) => {
   //change number product cart item
   const changeNumberProduct = () => {
     cartAPIs
-      .updateQuatityCartItem({ id_cart_item: props.id_cart_item, quantity })
+      .updateQuatityCartItem({ id_product: props.id_product, quantity })
       .then((q) => {
         // setQuantity(quantity);
         ToastAndroid.show("Đã cập nhật số lượng sản phẩm", ToastAndroid.SHORT);
