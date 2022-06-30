@@ -118,7 +118,7 @@ const HomeScreen = ({ navigation }) => {
       img: require("../assets/img/GraeconNominati.png"),
     },
   ];
-  //get product
+  //render cart item
   const renderCartItem = () => {
     if (loading) {
       return (

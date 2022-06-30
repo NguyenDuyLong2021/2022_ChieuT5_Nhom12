@@ -148,7 +148,7 @@ const ProductDetails = ({ navigation },{ props }) => {
         </Text>
 
         <ScrollView horizontal={true}>
-          { product!==undefined&& product!==null
+          {  product!==null
             ?product.listImages.map((image) => (
                 <Image
                   source={{ uri: "http://172.16.2.207:8080/foodfresh" + image.image }}
