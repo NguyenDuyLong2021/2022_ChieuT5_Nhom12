@@ -39,6 +39,8 @@ public class ProductService implements IProductService {
 	 * output: a list product
 	 */
 	@Override
+	// Phuong thuc tim kiems san pham
+	// tra ve 1 danh sach cac san pham khi nhap vao String
 	public List<Product> search(String key) {
 		return productDao.search(key);
 	}
